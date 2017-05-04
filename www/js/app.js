@@ -1,4 +1,4 @@
-// Esto es el conflicto resuelto del merge
+// Esto es el conflicto JUAN
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
