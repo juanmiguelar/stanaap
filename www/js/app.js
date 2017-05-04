@@ -1,4 +1,4 @@
-/* Esto es otro conflicto! :D */
+/* Conflicto #100 */
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
