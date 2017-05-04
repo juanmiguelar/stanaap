@@ -1,3 +1,4 @@
+/* Esto es un comentario de Miguel */
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
