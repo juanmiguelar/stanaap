@@ -1,4 +1,4 @@
-//esto es lo correcto
+// Esto es el conflito 
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
