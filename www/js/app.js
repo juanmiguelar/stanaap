@@ -1,4 +1,6 @@
+
 /* Esto es un comentario de Miguel */
+//hebvoubsdovjhb
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
