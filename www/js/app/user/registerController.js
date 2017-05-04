@@ -2,7 +2,7 @@ angular.module('registerModule')
 
 .controller('registerController', function($http,$scope, User){
      $scope.data = {};
-        
+        ////jbflhsbvlfvbljdbvsjbslj
     $scope.register = function() {
         
     //var user = User.build($scope.nombre, $scope.apellido, $scope.email)
