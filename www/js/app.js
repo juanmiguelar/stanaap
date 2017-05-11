@@ -1,5 +1,5 @@
 // Esto es un conflicto con alex
-// Esto es el conflicto JUAN
+// Esto es el conflicto JUANmmmmm
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'registerModule'])
     }
   });
 })
-
+//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
