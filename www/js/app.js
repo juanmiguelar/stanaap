@@ -1,5 +1,5 @@
 // Esto es un conflicto con alex
-// Esto es el conflicto JUAN
+// Esto es el conflicto
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
