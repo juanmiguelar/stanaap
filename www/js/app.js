@@ -1,5 +1,3 @@
-// Esto es un conflicto con alex
-// Esto es el conflicto
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
@@ -17,7 +15,7 @@ angular.module('starter', ['ionic', 'registerModule'])
     }
   });
 })
-
+//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
