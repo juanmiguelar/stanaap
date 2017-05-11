@@ -1,3 +1,5 @@
+// Esto es un conflicto con alex
+
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
