@@ -1,0 +1,36 @@
+.register, .register .pane, .register .item-complex .item-content .ion-content .ion-view {
+    background-color: black;
+    
+}
+.list {
+    
+    background-color: #ffffff;
+}
+
+.view {
+    background-color: black;
+    
+}
+
+.background{
+    background-color: black;
+}
+
+.item-input {
+    
+    height: 12vh;
+    margin-top: 2%;
+}
+
+.btn-registrarse {
+    
+    margin-top: 6%;
+    background-color: #ff6666;
+    color: white;
+}
+.buttonHolder {
+        text-align: center; 
+}
+
+
+
