@@ -2,11 +2,6 @@ angular.module('registerModule')
 
 .controller('registerController', function($http,$scope){
     
-     $scope.correo="priscilaMadrigal@gmail.com";
-     $scope.contrasenna="123"; 
-     $scope.nombre="Priscila";
-     ///= [{ email : "priscila@gmail.com", contrasenna : "123", nombre : "Priscila"}];
-     
     $scope.register = function() {
      insertarUsuario($http,$scope);
     };
