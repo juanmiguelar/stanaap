@@ -6,34 +6,35 @@
     <div class="item item-image">
     <img id="logo" src="img/logo.png">
     </div>
-    
-    <div class="list">
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Nombre:</span>
-     <i class="icon ion-person placeholder-icon"></i>
-    <input type="text" placeholder="Nombre:">
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Email:</span>
-    <i class="icon ion-at placeholder-icon"></i>
-    <input type="email" placeholder="Email:">
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Contraseña:</span>
-    <i class="icon ion-key placeholder-icon"></i>
-    <input type="password" placeholder="Ingrese una contraseña:">
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Repita la contraseña:</span>
-    <i class="icon ion-key placeholder-icon"></i>
-    <input type="password" placeholder="Repita la contraseña:">
-  </label>
-  <div class="buttonHolder">
-  <button class="button button-large btn-registrarse">
-      Registrarse
-    </button>
+    <div class="list" ng-controller="registerController">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Nombre:</span>
+        <i class="icon ion-person placeholder-icon"></i>
+      <input type="text" placeholder="Nombre" ng-model="nombre">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email:</span>
+        <i class="icon ion-at placeholder-icon"></i>
+        <input type="email" placeholder="Email" ng-model="correo">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Contraseña:</span>
+        <i class="icon ion-key placeholder-icon"></i>
+        <input type="password" placeholder="Ingrese una contraseña" ng-model="contrasenna">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Repita la contraseña:</span>
+        <i class="icon ion-key placeholder-icon"></i>
+        <input type="password" placeholder="Repita la contraseña" ng-model="contrasennaConfirm" data-match="contrasenna">
+      </label>
+      <div class="buttonHolder">
+        <button class="button button-large btn-registrarse" ng-click="register()">
+            Registrarse
+        </button>
+      </div>
     </div>
-</div>
+   
+    
 
   </ion-content>
 </ion-view>    
