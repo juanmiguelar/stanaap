@@ -1,24 +1,19 @@
 angular.module('registerModule')
 
-.controller('registerController', function($http,$scope, User){
-     $scope.data = {};
-        ////jbflhsbvlfvbljdbvsjbslj
+.controller('registerController', function($http,$scope){
+    
     $scope.register = function() {
-        
-    //var user = User.build($scope.nombre, $scope.apellido, $scope.email)
-  
-   
-        insertarUsuario($http,$scope);
-    }
-})
+     insertarUsuario($http,$scope);
+    };
+});
 
 function insertarUsuario($http,$scope){
-     var link = 'https://app-backendserver-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
-        
-        $http.post(link, {method:'add', nombre : $scope.data.nombre, apellido : $scope.data.apellido, email : $scope.data.email }).then(function (res){
+     var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
+ 
+        $http.post(link, {method:'add', correo : $scope.correo, contrasenna : $scope.contrasenna, nombre : $scope.nombre}).then(function (result){
             
-            $scope.response = res.data;
-            console.log($scope.response)
+            $scope.response = result.data;
+            console.log($scope.response);
         });
   }
   
