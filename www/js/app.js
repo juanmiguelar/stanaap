@@ -1,3 +1,5 @@
+// Esto es un conflicto con alex
+
 angular.module('starter', ['ionic', 'registerModule'])
 
 .run(function($ionicPlatform) {
@@ -15,7 +17,7 @@ angular.module('starter', ['ionic', 'registerModule'])
     }
   });
 })
-
+//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -45,5 +47,5 @@ angular.module('starter', ['ionic', 'registerModule'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/home');
+  $urlRouterProvider.otherwise('app/register');
 });
