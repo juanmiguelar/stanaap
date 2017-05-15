@@ -5,11 +5,27 @@ angular.module('registerModule')
     $scope.register = function() {
 
      
-        insertarUsuario($http,$scope);
-  
-   //  insertarUsuario($http,$scope);
+
+
+    validarCorreo($http,$scope);
+    
+        
+    //insertarUsuario($http,$scope);
+
     };
 });
+
+
+
+function validarCorreo($http,$scope){
+     var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
+ 
+        $http.post(link, {method:'validarCorreo', correo : $scope.correo }).then(function (result){
+            
+            $scope.response = result;
+        console.log($scope.response);
+        });
+  }
 
 
 function insertarUsuario($http,$scope){
