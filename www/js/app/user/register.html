@@ -2,31 +2,36 @@
 <ion-view hide-nav-bar="true" class="view" view-title="Registrar">
     <link href="css/register.css" rel="stylesheet">
   <ion-content class="register" has-header="false">
-    
+    <ion-side-menu side="left" is-enabled="false" width="275" class="menu menu-left" style="width: 275px;">
+    </ion-side-menu>
     <div class="item item-image">
     <img id="logo" src="img/logo.png">
     </div>
     
     <div class="list">
   <label class="item item-input item-floating-label">
-    <span class="input-label">Nombre:</span>
+    <div class="letras">
      <i class="icon ion-person placeholder-icon"></i>
-    <input type="text" placeholder="Nombre:">
+    <input type="text" placeholder="Nombre">
+    </div>
   </label>
   <label class="item item-input item-floating-label">
-    <span class="input-label">Email:</span>
-    <i class="icon ion-at placeholder-icon"></i>
-    <input type="email" placeholder="Email:">
+    <div class="letras">
+    <i class="icon ion-email placeholder-icon"></i>
+    <input type="email" placeholder="Correo Electrónico">
+    </div>
   </label>
   <label class="item item-input item-floating-label">
-    <span class="input-label">Contraseña:</span>
+    <div class="letras">
     <i class="icon ion-key placeholder-icon"></i>
-    <input type="password" placeholder="Ingrese una contraseña:">
+    <input type="password" placeholder="Ingrese una contraseña">
+    </div>
   </label>
   <label class="item item-input item-floating-label">
-    <span class="input-label">Repita la contraseña:</span>
+    <div class="letras">
     <i class="icon ion-key placeholder-icon"></i>
-    <input type="password" placeholder="Repita la contraseña:">
+    <input type="password" placeholder="Repita la contraseña">
+    </div>
   </label>
   <div class="buttonHolder">
   <button class="button button-large btn-registrarse">

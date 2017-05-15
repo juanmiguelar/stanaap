@@ -1,4 +1,4 @@
-.register, .register .pane, .register .item-complex .item-content .ion-content .ion-view {
+.login, .login .pane, .login .item-complex .item-content .ion-content .ion-view {
     background-color: black;
     
 }
@@ -26,7 +26,7 @@
     border-radius: 0.5vh;
 }
 
-.btn-registrarse {
+.btn-login {
     width: 28vh;
     font-size: 3.4vh;
     margin-top: 10%;
@@ -75,6 +75,18 @@
 .menu-left {
     background-color: black;
     left: 0;
+}
+
+.link-div {
+    text-align: center;
+    margin-top: 14vh;
+    font-size: 2.5vh;
+    letter-spacing: 0.1vh;
+    font-family: cursive;
+}
+
+.link {
+    color: white;
 }
 
 

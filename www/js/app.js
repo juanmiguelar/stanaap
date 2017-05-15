@@ -35,6 +35,15 @@ angular.module('starter', ['ionic', 'registerModule'])
         }
       }
     })
+    
+    .state('app.login', {
+      url: '/login', 
+      views:{
+        'content':{
+          templateUrl:'js/app/user/login.html'
+        }
+      }
+    })
 
     .state('app.register', {
       url: '/register', 
