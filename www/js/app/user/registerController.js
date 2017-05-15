@@ -4,10 +4,7 @@ angular.module('registerModule')
      $scope.data = {};
         
     $scope.register = function() {
-        
-    //var user = User.build($scope.nombre, $scope.apellido, $scope.email)
-  
-   
+     
         insertarUsuario($http,$scope);
     }
 })
