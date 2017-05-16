@@ -1,18 +1,17 @@
 angular.module('registerModule')
 
-.controller('registerController', function($http,$scope, $ionicPopup){
+.controller('registerController', function($http,$scope, $ionicPopup, $state){
     
     $scope.register = function() {
-
-    //validarCorreo($http,$scope);
-        
-    insertarUsuario($http,$scope, $ionicPopup);
-
+  
+    insertarUsuario($http,$scope, $ionicPopup, $state);
+    
+   
     };
 });
 
 
-function insertarUsuario($http,$scope, $ionicPopup){
+function insertarUsuario($http,$scope, $ionicPopup, $state){
      var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
  
         $http.post(link, {method:'add', correo : $scope.correo, contrasenna : $scope.contrasenna, nombre : $scope.nombre}).then(function (result){
@@ -24,6 +23,10 @@ function insertarUsuario($http,$scope, $ionicPopup){
                  title: 'Bienvenido a Stanapp',
                  template: 'Se ha registrado con éxito'
                });
+               alertPopup.then(function(res) {
+                  $state.go('app.home');
+               });
+               
             }else{
                 var alertPopup = $ionicPopup.alert({
                  title: 'Ha ocurrido un error',
