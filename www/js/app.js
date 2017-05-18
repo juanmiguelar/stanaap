@@ -1,6 +1,6 @@
 // Esto es un conflicto con alex
 
-angular.module('starter', ['ionic', 'registerModule'])
+angular.module('starter', ['ionic',  'loginModule','registerModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -40,7 +40,8 @@ angular.module('starter', ['ionic', 'registerModule'])
       url: '/login', 
       views:{
         'content':{
-          templateUrl:'js/app/user/login.html'
+          templateUrl:'js/app/user/login.html',
+          controller: 'loginController'
         }
       }
     })
@@ -56,5 +57,5 @@ angular.module('starter', ['ionic', 'registerModule'])
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/register');
+  $urlRouterProvider.otherwise('app/login');
 });
