@@ -1,0 +1,2 @@
+
+angular.module('loginModule', ['userModel'])
