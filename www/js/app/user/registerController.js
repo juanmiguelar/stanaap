@@ -4,15 +4,30 @@ angular.module('registerModule')
 
     $scope.register = function() {
 
+        // Valido la contraseña
         var result = validateEmail($scope.correo);
+        // Valido las contraseñas
+        var contras = verifyContra($scope.contrasenna, $scope.verify)
         
-        if (result) {
+        // Si las 2 están bien se puede registrar
+        if (result && contras) {
             insertarUsuario($http, $scope, $ionicPopup, $state);
         }else{
-            var alertPopup = $ionicPopup.alert({
+            
+            // Identificar el fallo para poder dar feedback
+            if (!result) {
+                var alertPopup = $ionicPopup.alert({
                     title: 'Advertencia',
                     template: 'El correo no es valido'
                 });
+            }
+            
+            if (!contras) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Advertencia',
+                    template: 'Las contraseñas no coinciden'
+                });
+            }
         }
     };
 });
@@ -20,6 +35,10 @@ angular.module('registerModule')
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+function verifyContra(contra, verify){
+    return contra == verify;
 }
 
 function insertarUsuario($http, $scope, $ionicPopup, $state) {
