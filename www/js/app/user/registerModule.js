@@ -1,1 +1,1 @@
-angular.module('registerModule', ['userModel'])
+angular.module('registerModule', []);
