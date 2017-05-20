@@ -1,10 +1,11 @@
 .register, .register .pane, .register .item-complex .item-content .ion-content .ion-view {
     background-color: black;
-    
+    margin-top: -3vh;
 }
 .list {
     margin-top: 6vh;
     background-color: black;
+
 }
 
 .view {
@@ -41,7 +42,7 @@
     padding-left: 4vh;
     height: 34px;
     color: rgb(17, 17, 17);
-    vertical-align: middle;
+    vertical-align: baseline;
     font-size: 2.6vh;
     line-height: 16px;
 }
@@ -76,6 +77,8 @@
     background-color: black;
     left: 0;
 }
+
+
 
 
 
