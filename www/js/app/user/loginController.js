@@ -17,23 +17,19 @@ function validarUsuario($http,$scope, $ionicPopup, $state){
         $http.post(link, {method:'validarUsuario', email : $scope.email, password : $scope.password }).then(function (result){
             
             $scope.response = result.data;
-            console.log($scope.response);
+            var respuesta = $scope.response.replace('\n', '');
             
-            // var respuesta = $scope.response.replace(/['"]+/g, '');
-            
-            // if(respuesta == "true"){
+            //Si la respuesta no es vacia se cumple la condición
+            if(respuesta){
                 
-            //       $state.go('app.home');
+                  $state.go('app.home');
                
-            // }else{
-            //     var alertPopup = $ionicPopup.alert({
-            //      title: 'Ha ocurrido un error',
-            //      template: 'La contraseña o correo son incorrectos.'
-            //   });
-            //   alertPopup.then(function(res) {
-            //       $state.go('app.login');
-            //   });
-            // }
+            }else{
+                var alertPopup = $ionicPopup.alert({
+                 title: 'Datos Inválidos',
+                 template: 'La contraseña o correo son incorrectos.'
+              });
+            }
         });
   }
   
