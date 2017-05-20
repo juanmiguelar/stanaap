@@ -53,6 +53,7 @@ function insertarUsuario($http, $scope, $ionicPopup, $state) {
 
         $scope.response = result.data;
         var respuesta = $scope.response.replace(/['"]+/g, '');
+        
         if (respuesta == "true") {
             var alertPopup = $ionicPopup.alert({
                 title: 'Bienvenido a Stanapp',
