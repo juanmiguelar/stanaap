@@ -66,20 +66,10 @@ function insertarUsuario($http, $scope, $ionicPopup, $state) {
         }
         else {
 
-            if ($scope.correo) {
-                var alertPopup = $ionicPopup.alert({
+            var alertPopup = $ionicPopup.alert({
                     title: 'Ha ocurrido un error',
                     template: 'El correo ' + $scope.correo + ' ya existe! Ingrese otro'
                 });
-            }
-            else {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Advertencia',
-                    template: 'El correo no es valido'
-                });
-            }
-
-
         }
     });
 }
