@@ -1,10 +1,11 @@
 .register, .register .pane, .register .item-complex .item-content .ion-content .ion-view {
     background-color: black;
-    
+    margin-top: -3vh;
 }
 .list {
     margin-top: 6vh;
     background-color: black;
+
 }
 
 .view {
