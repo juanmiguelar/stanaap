@@ -17,6 +17,7 @@ function validarUsuario($http,$scope, $ionicPopup, $state){
         $http.post(link, {method:'validarUsuario', email : $scope.email, password : $scope.password }).then(function (result){
             
             $scope.response = result.data;
+            console.log($scope.response);
             
             // var respuesta = $scope.response.replace(/['"]+/g, '');
             
