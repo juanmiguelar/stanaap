@@ -17,15 +17,15 @@ angular.module('registerModule')
             // Identificar el fallo para poder dar feedback
             if (!result) {
                 var alertPopup = $ionicPopup.alert({
-                    title: 'Advertencia',
-                    template: 'El correo no es valido'
+                    title: 'Datos Inválidos',
+                    template: 'El correo no es válido.'
                 });
             }
             
             if (!contras) {
                 var alertPopup = $ionicPopup.alert({
-                    title: 'Advertencia',
-                    template: 'Las contraseñas no coinciden'
+                    title: 'Datos Inválidos',
+                    template: 'Las contraseñas no coinciden.'
                 });
             }
         }
@@ -52,9 +52,9 @@ function insertarUsuario($http, $scope, $ionicPopup, $state) {
     }).then(function(result) {
 
         $scope.response = result.data;
-        var respuesta = $scope.response.replace(/['"]+/g, '');
+        var respuesta = $scope.response.replace('\n', '');
         
-        if (respuesta == "true") {
+        if (respuesta == 1) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Bienvenido a Stanapp',
                 template: 'Se ha registrado con éxito'
@@ -64,10 +64,10 @@ function insertarUsuario($http, $scope, $ionicPopup, $state) {
             });
 
         }
-        else {
+        else{
 
             var alertPopup = $ionicPopup.alert({
-                    title: 'Ha ocurrido un error',
+                    title: 'Datos Inválidos',
                     template: 'El correo ' + $scope.correo + ' ya existe! Ingrese otro'
                 });
         }
