@@ -1,4 +1,4 @@
-angular.module('registerModule')
+angular.module('registerModule',[])
 
 .controller('registerController', function($http,$scope, $ionicPopup, $state){
     
@@ -7,8 +7,18 @@ angular.module('registerModule')
     insertarUsuario($http,$scope, $ionicPopup, $state);
     
    
+    }
+})
+
+//prueba de jasmine
+.controller('prueba', function($http,$scope){
+    
+    $scope.settings =  {
+        casa: true
     };
 });
+
+
 
 
 function insertarUsuario($http,$scope, $ionicPopup, $state){
@@ -27,12 +37,21 @@ function insertarUsuario($http,$scope, $ionicPopup, $state){
                   $state.go('app.home');
                });
                
+               $scope.settings =  {
+               casa: true
+              };
+               
             }else{
                 var alertPopup = $ionicPopup.alert({
                  title: 'Ha ocurrido un error',
                  template: 'El correo '+ $scope.correo + ' ya existe! Ingrese otro'
-               });
+               })
+               
+               $scope.settings =  {
+             casa: false
+              };
             }
-        });
+        })
   }
+  
   

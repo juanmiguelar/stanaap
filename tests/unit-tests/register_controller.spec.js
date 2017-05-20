@@ -1,12 +1,17 @@
-describe('Users', function() {
-    
-    
-    it("can register with a valid email", function() {
-    var message = "luis.vargas@hotmail.com";
 
-    expect(message).toMatch('luis.vargas@hotmail.com');
-    // hola 
 
-  });
+describe('Controllers', function() {
+    var scope;
+    
+    beforeEach(module('registerModule'));
+    
+    beforeEach(inject(function($rootScope, $controller){
+        scope = $rootScope.$new();
+        $controller('prueba', {$scope: scope});
+    }));
+    
+    it('Se cumpla el registro', function() {
+        expect(scope.settings.casa).toEqual(true);
+    });
 });
 
