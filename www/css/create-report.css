@@ -1,0 +1,125 @@
+.item-input {
+    margin: 0 auto;
+    width: 45vh;
+    background-color: white;
+    height: 8.7vh;
+    margin-top: 2%;
+    margin-bottom: 3vh;
+    border-radius: 0.5vh;
+}
+
+.btn-registrarse {
+    width: 28vh;
+    font-size: 3.4vh;
+    margin-top: 10%;
+    background-color: #ff6666;
+    color: white;
+}
+.buttonHolder {
+        text-align: center; 
+}
+.textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    display: inline-block;
+    padding-left: 4vh;
+    height: 34px;
+    color: rgb(17, 17, 17);
+    vertical-align: baseline;
+    font-size: 2.6vh;
+    line-height: 16px;
+}
+
+.placeholder-icon {
+    font-size: 3.5vh;
+    color: #666666;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 9vh;
+}
+
+h1:first-child, .h1:first-child, h2:first-child, .h2:first-child, h3:first-child, .h3:first-child {
+    margin-top: 0;
+    color: #666666;
+}
+
+.form {
+    position: relative;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 0;
+    margin-bottom: 20px;
+    margin-top: 12vh;
+}
+
+.textarea {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 23vh;
+}
+
+.input-textarea {
+height: 16vh;
+}
+
+.fileUpload {
+    background: #ff6666;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 18vh;
+    border-radius: 2px;
+    height: 5vh;
+    color: white;
+    width: 24vh;
+    text-align: center;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.image-upload > input
+{
+    display: none;
+}
+
+.item-image img:first-child, .item-image .list-img {
+    width: 25%;
+    vertical-align: middle;
+}
+
+.item-image {
+    padding: 0;
+    text-align: center;
+    border: 0px;
+    margin-top: -9vh;
+    margin-bottom: -2vh;
+}
+
+.ion-camera {
+    font-size: 3.5;
+    color: white;
+    float: left;
+    margin-top: 0.7vh;
+    margin-left: 3vh;
+}
+
+.upload-label {
+    margin-top: 0.7vh;
+    float: left;
+    margin-left: 1vh;
+}
+
+.div-button {
+    text-align: center;
+}

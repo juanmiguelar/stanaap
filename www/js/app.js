@@ -17,6 +17,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule'])
     }
   });
 })
+
 //comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -42,6 +43,16 @@ angular.module('starter', ['ionic',  'loginModule','registerModule'])
         'content':{
           templateUrl:'js/app/user/login.html',
           controller: 'loginController'
+        }
+      }
+    })
+    
+    .state('app.createReport', {
+      url: '/createReport', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/create.html'
+          //AÑADIR CONTROLLER
         }
       }
     })
