@@ -22,7 +22,7 @@ function validarUsuario($http,$scope, $ionicPopup, $state){
             //Si la respuesta no es vacia se cumple la condición
             if(respuesta){
                 
-                  $state.go('app.home');
+                  $state.go('app.createReport');
                
             }else{
                 var alertPopup = $ionicPopup.alert({

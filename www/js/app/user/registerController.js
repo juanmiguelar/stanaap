@@ -2,8 +2,6 @@ angular.module('registerModule',[])
 
 .controller('registerController', function ($http, $scope, $ionicPopup, $state) {
     
-    $scope.title =  "Hola";
-    
     $scope.register = function() {
         // Valido la contraseña
         var result = validateEmail($scope.correo);
