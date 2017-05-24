@@ -47,11 +47,51 @@ angular.module('starter', ['ionic',  'loginModule','registerModule'])
       }
     })
     
-    .state('app.createReport', {
+    .state('app.createReportMaltratoAbandono', {
+      url: '/createReportMaltratoAbandono', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/createReportMaltratoAbandono.html'
+          //AÑADIR CONTROLLER
+        }
+      }
+    })
+    
+    .state('app.animalMaltratoAbandonoInfo', {
+      url: '/animalMaltratoAbandonoInfo', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/animalMaltratoAbandonoInfo.html'
+          //AÑADIR CONTROLLER
+        }
+      }
+    })
+    
+    .state('app.animalAdopcionInfo', {
+      url: '/animalAdopcionInfo', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/animalAdopcionInfo.html'
+          //AÑADIR CONTROLLER
+        }
+      }
+    })
+    
+     .state('app.createReport', {
       url: '/createReport', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/create.html'
+          templateUrl:'js/app/reports/createReport.html'
+          //AÑADIR CONTROLLER
+        }
+      }
+    })
+    
+    .state('app.createReportAdopcion', {
+      url: '/createReportAdopcion', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/createReportAdopcion.html'
           //AÑADIR CONTROLLER
         }
       }
