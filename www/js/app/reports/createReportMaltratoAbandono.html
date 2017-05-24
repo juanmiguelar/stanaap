@@ -1,0 +1,47 @@
+
+<ion-view class="view" view-title="Stanapp">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon ion-android-search" ng-click="toggleSearch()"></a>
+    </ion-nav-buttons>
+    
+    <div class="list form">
+    <link href="css/create-report.css" rel="stylesheet">
+    <div class="titulo">
+      <h2> Realizar Reporte </h2> 
+      </div>
+    <label class="item item-input item-select">
+      <i class="icon ion-android-list placeholder-icon"></i>
+    <div class="input-label"> Tipo de Reporte
+    </div>
+    <select>
+      <option selected>Maltrato</option>
+      <option>Abandono</option>
+      <option>Adopción</option>
+    </select>
+  </label>
+
+     <label class="item item-input item-floating-label">
+        <div class="letras">
+         <i class="icon ion-edit placeholder-icon"></i>
+        <input type="text" placeholder="Título" ng-model="titulo">
+        </div>
+      </label>
+      <div class="textarea">
+         <label class="item item-input item-floating-label input-textarea">
+        <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5"></textarea>
+         </label>
+      </div>
+     <div class="fileUpload btn btn-primary">
+    <i class="icon ion-camera placeholder-icon"></i>
+    <span class="upload-label">Subir Imagen</span>
+    <input type="file" accept="image/*"  class="upload" />
+      </div>
+        
+      <div class="buttonHolder">
+      <button onclick="window.location.href='/#/app/animalMaltratoAbandonoInfo'" class="button button-large btn-registrarse" ng-click="" >
+          Continuar
+        </button>
+    </div>
+  </ion-content>
+</ion-view>    
+
