@@ -12,7 +12,7 @@
         <label class="item item-input item-select">
             <i class="icon ion-android-list placeholder-icon"></i>
             <div class="input-label"> Tipo</div>
-            <select ng-model="tipo">
+            <select ng-model="tipo" ng-change="showSelectValue(tipo)">
               <option value="maltrato" selected>Maltrato</option>
               <option value="abandono">Abandono</option>
               <option value="adopcion">Adopción</option>
@@ -46,3 +46,4 @@
         
         </ion-content>
 </ion-view>
+
