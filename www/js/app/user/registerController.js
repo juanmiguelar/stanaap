@@ -71,7 +71,7 @@ angular.module('registerModule',[])
                     template: 'Se ha registrado con éxito'
                 });
                 alertPopup.then(function(res) {
-                    $state.go('app.home');
+                    $state.go('app.createReport');
                 });
     
             }
