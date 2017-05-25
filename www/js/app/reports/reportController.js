@@ -115,43 +115,18 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
         titulo: $localStorage.titulo,
         descripcion: $localStorage.descripcion,
         id_direccion: $localStorage.ID_DIRECCION,
-        id_adopcion: $localStorage.ID_ADOPCION
+        id_adopcion: $localStorage.ID_ADOPCION,
+        correo: $localStorage.CORREO_USUARIO
         
     }).then(function(result) {
 
         $scope.response = result.data;
-        $scope.respuesta = $scope.response.replace('\n', '');
-        console.log($scope.respuesta);
+        if($scope.response =){
+            
+        }
+        
     });
 
-}
-
-function validarReporte($http, $scope, $ionicPopup, $state) {
-
-    var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
-
-    $http.post(link, {
-        method: 'validarUsuario',
-        email: $scope.email,
-        password: $scope.password
-    }).then(function(result) {
-
-        $scope.response = result.data;
-        var respuesta = $scope.response.replace('\n', '');
-
-        //Si la respuesta no es vacia se cumple la condición
-        if (respuesta) {
-
-            $state.go('app.home');
-
-        }
-        else {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Datos Inválidos',
-                template: 'La contraseña o correo son incorrectos.'
-            });
-        }
-    });
 }
 
 // $scope.showSelectValue = function(tipo) {
