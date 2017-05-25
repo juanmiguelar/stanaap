@@ -121,8 +121,14 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
     }).then(function(result) {
 
         $scope.response = result.data;
-        if($scope.response =){
-            
+        if($scope.response == 1){
+            var alertPopup = $ionicPopup.alert({
+                    title: 'Reportar caso',
+                    template: 'Se ha reportado el caso!'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.home');
+                });
         }
         
     });
