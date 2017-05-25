@@ -1,0 +1,36 @@
+
+<ion-view class="view" view-title="Stanapp">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon ion-android-search" ng-click="toggleSearch()"></a>
+    </ion-nav-buttons>
+    
+    <div class="list form">
+    <link href="css/reporteAdopcion.css" rel="stylesheet">
+    <div class="titulo">
+      <h2>Reporte Adopción</h2> 
+      </div>
+     <label class="item item-input item-floating-label">
+        <div class="letras">
+         <i class="icon ion-edit placeholder-icon"></i>
+        <input type="text" placeholder="Título" ng-model="titulo">
+        </div>
+      </label>
+      <div class="textarea">
+         <label class="item item-input item-floating-label input-textarea">
+        <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5"></textarea>
+         </label>
+      </div>
+     <div class="fileUpload btn btn-primary">
+    <i class="icon ion-camera placeholder-icon"></i>
+    <span class="upload-label">Subir Imagen</span>
+    <input type="file" accept="image/*"  class="upload" />
+      </div>
+        
+      <div class="buttonHolder">
+      <button onclick="window.location.href='/#/app/animalAdopcionInfo'" class="button button-large btn-registrarse" ng-click="" >
+          Continuar
+        </button>
+    </div>
+  </ion-content>
+</ion-view>    
+
