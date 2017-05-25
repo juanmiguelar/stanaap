@@ -17,7 +17,7 @@
       </label>
       <div class="textarea">
          <label class="item item-input item-floating-label input-textarea">
-        <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5"></textarea>
+        <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5" ng-model="descripcion"></textarea>
          </label>
       </div>
      <div class="fileUpload btn btn-primary">
@@ -27,7 +27,7 @@
       </div>
         
       <div class="buttonHolder">
-      <button onclick="window.location.href='/#/app/animalAdopcionInfo'" class="button button-large btn-registrarse" ng-click="" >
+      <button onclick="window.location.href='/#/app/animalAdopcionInfo'" class="button button-large btn-registrarse" ng-click="guardarInfoReporteGeneralAdopcion()" >
           Continuar
         </button>
     </div>
