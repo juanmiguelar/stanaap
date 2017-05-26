@@ -3,35 +3,46 @@ angular.module('registerModule',['ngStorage'])
 .controller('registerController', function ($http, $scope, $ionicPopup, $state, $localStorage) {
     
     $scope.register = function() {
-        // Valido la contraseña
-        var result = validateEmail($scope.correo);
-        $scope.resultadoEmail = result;
         
-        // Valido las contraseñas
-        var contras = verifyContra($scope.contrasenna, $scope.verify)
-        $scope.resultadoContrasenna = contras;
-        
-        // Si las 2 están bien se puede registrar
-        if (result && contras) {
-            insertarUsuario($http, $scope, $ionicPopup, $state);
-            insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
-        }else{
+    if($scope.nombre == null || $scope.correo == null || $scope.contrasenna == null || $scope.verify == null){
+        var alertPopup = $ionicPopup.alert({
+            title: 'Datos incompletos',
+            template: 'Debe ingresar todos los datos del formulario'
+            });
+            alertPopup.then(function(res) {
+                $state.go('app.register');
+            });
+    }else{
+            // Valido la contraseña
+            var result = validateEmail($scope.correo);
+            $scope.resultadoEmail = result;
             
-            // Identificar el fallo para poder dar feedback
-            if (!result) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Datos Inválidos',
-                    template: 'El correo no es válido.'
-                });
-            }
+            // Valido las contraseñas
+            var contras = verifyContra($scope.contrasenna, $scope.verify)
+            $scope.resultadoContrasenna = contras;
             
-            if (!contras) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Datos Inválidos',
-                    template: 'Las contraseñas no coinciden.'
-                })
+            // Si las 2 están bien se puede registrar
+            if (result && contras) {
+                insertarUsuario($http, $scope, $ionicPopup, $state);
+                insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
+            }else{
+                
+                // Identificar el fallo para poder dar feedback
+                if (!result) {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Datos Inválidos',
+                        template: 'El correo no es válido.'
+                    });
+                }
+                
+                if (!contras) {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Datos Inválidos',
+                        template: 'Las contraseñas no coinciden.'
+                    })
+                }
             }
-        }
+        }    
     }
 
 })
