@@ -2,8 +2,6 @@ angular.module('registerModule',[])
 
 .controller('registerController', function ($http, $scope, $ionicPopup, $state) {
     
-    $scope.title =  "Hola";
-    
     $scope.register = function() {
         // Valido la contraseña
         var result = validateEmail($scope.correo);
@@ -16,6 +14,7 @@ angular.module('registerModule',[])
         // Si las 2 están bien se puede registrar
         if (result && contras) {
             insertarUsuario($http, $scope, $ionicPopup, $state);
+           
         }else{
             
             // Identificar el fallo para poder dar feedback
