@@ -4,14 +4,14 @@ angular.module('registerModule',['ngStorage'])
     
     $scope.register = function() {
         
-    if($scope.nombre == null || $scope.correo == null || $scope.contrasenna == null || $scope.verify == null){
-        var alertPopup = $ionicPopup.alert({
-            title: 'Datos incompletos',
-            template: 'Debe ingresar todos los datos del formulario'
-            });
-            alertPopup.then(function(res) {
-                $state.go('app.register');
-            });
+    if($scope.nombre == null || $scope.contrasenna == null || $scope.verify == null){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.register');
+                });   
     }else{
             // Valido la contraseña
             var result = validateEmail($scope.correo);
@@ -23,7 +23,6 @@ angular.module('registerModule',['ngStorage'])
             
             // Si las 2 están bien se puede registrar
             if (result && contras) {
-                insertarUsuario($http, $scope, $ionicPopup, $state);
                 insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
             }else{
                 
