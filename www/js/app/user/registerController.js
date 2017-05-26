@@ -13,6 +13,7 @@ angular.module('registerModule',['ngStorage'])
         
         // Si las 2 están bien se puede registrar
         if (result && contras) {
+            insertarUsuario($http, $scope, $ionicPopup, $state);
             insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
         }else{
             

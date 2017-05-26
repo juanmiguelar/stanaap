@@ -4,19 +4,19 @@ describe('Prueba Usuario', function() {
         module('registerModule');
         
     });
-     var scope, ionicPopup, state, http, ctrl,$httpBackend;
+     var scope, ionicPopup, state, http, ctrl, httpBackend;
         
     state = jasmine.createSpyObj('$state spy', ['go']);
         
     ionicPopup = jasmine.createSpyObj('$ionicPopup spy', ['alert']);
     
     
-    
     describe('Prueba Registrarse', function (){
        
          
-        beforeEach(inject(function($controller, $rootScope){
+        beforeEach(inject(function($controller, $rootScope, $httpBackend, $injector){
                 scope = $rootScope.$new();
+                $httpBackend = httpBackend;
                 ctrl = $controller('registerController', {
                     $http:http, 
                     $scope:scope, 
@@ -35,34 +35,32 @@ describe('Prueba Usuario', function() {
         
         it('debería validar que las los contraseñas sean iguales', function(){
             scope.contrasenna = "123";
-            scope.verify = "12";
+            scope.verify = "123";
             scope.register();
-            expect(scope.resultadoContrasenna).toBe(false);
+            expect(scope.resultadoContrasenna).toBe(true);
         });
+        
+    
          
         it('debería registrar un usuario', function(){
             //Se definen valores a insertar, valores de prueba 
             scope.contrasenna = "123";
             scope.verify = "123";
+            scope.nombre = "pedro";
             scope.correo = "prueba@gmail.com";
+            scope.register();
             
-            // $httpBackend.when('POST', 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php', function(data) {
-            //   return angular.fromJson(data).username === 'hardcoded_user'
-            // })
-            // .respond({ 
-            //   username: 'hardcoded_user'
-            // });
+            $httpBackend.when('POST', 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php' )
+            .respond({ 
+              status: 'success'
+            });
         
-            // $httpBackend.flush();
+            $httpBackend.flush();
 
-             
             
-            //Llama el metodo
-            // scope.register();
-            
-            //Si es 1 es porque se insertó a la BD
-            // expect(scope.respuestaRegistarusuario).toBe(1);
-        });
+  
+            //expect(scope.respuestaRegistarusuario).toBe(1);
+         });
         
     });
     
