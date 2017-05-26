@@ -1,1 +1,1 @@
-angular.module('loginModule', ['userModel'])
+angular.module('loginModule', ['ngStorage'])

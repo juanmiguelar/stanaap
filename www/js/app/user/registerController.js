@@ -1,6 +1,6 @@
-angular.module('registerModule',[])
+angular.module('registerModule',['ngStorage'])
 
-.controller('registerController', function ($http, $scope, $ionicPopup, $state) {
+.controller('registerController', function ($http, $scope, $ionicPopup, $state, $localStorage) {
     
     $scope.register = function() {
         // Valido la contraseña
@@ -14,7 +14,7 @@ angular.module('registerModule',[])
         // Si las 2 están bien se puede registrar
         if (result && contras) {
             insertarUsuario($http, $scope, $ionicPopup, $state);
-           
+            insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
         }else{
             
             // Identificar el fallo para poder dar feedback
@@ -52,7 +52,7 @@ angular.module('registerModule',[])
         return contra == verify;
     }
     
-    function insertarUsuario($http, $scope, $ionicPopup, $state) {
+    function insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage) {
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
     
         $http.post(link, {
@@ -67,12 +67,13 @@ angular.module('registerModule',[])
             $scope.respuestaRegistarusuario = respuesta;        
             
             if (respuesta == 1) {
+                $localStorage.CORREO_USUARIO = $scope.correo;
                 var alertPopup = $ionicPopup.alert({
                     title: 'Bienvenido a Stanapp',
                     template: 'Se ha registrado con éxito'
                 });
                 alertPopup.then(function(res) {
-                    $state.go('app.home');
+                    $state.go('app.createReport');
                 });
     
             }

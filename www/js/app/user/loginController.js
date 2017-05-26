@@ -1,28 +1,29 @@
-angular.module('loginModule')
+angular.module('loginModule', ['ngStorage'])
 
-.controller('loginController', function($http,$scope, $ionicPopup, $state){
+.controller('loginController', function($http,$scope, $ionicPopup, $state, $localStorage){
     
     $scope.login = function() {
     
-    validarUsuario($http,$scope,$ionicPopup, $state);
+    validarUsuario($http,$scope,$ionicPopup, $state, $localStorage);
     
     };
 });
 
 
-function validarUsuario($http,$scope, $ionicPopup, $state){
+function validarUsuario($http,$scope, $ionicPopup, $state, $localStorage){
     
+    $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
      var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
  
         $http.post(link, {method:'validarUsuario', email : $scope.email, password : $scope.password }).then(function (result){
             
             $scope.response = result.data;
-            var respuesta = $scope.response.replace('\n', '');
-            
+            var respuesta = $scope.response;
+           
             //Si la respuesta no es vacia se cumple la condición
             if(respuesta){
-                
-                  $state.go('app.home');
+                  $localStorage.CORREO_USUARIO = $scope.email;
+                  $state.go('app.createReport');
                
             }else{
                 var alertPopup = $ionicPopup.alert({
@@ -30,6 +31,16 @@ function validarUsuario($http,$scope, $ionicPopup, $state){
                  template: 'La contraseña o correo son incorrectos.'
               });
             }
-        });
+        }, 
+            function errorCallback(response) {
+             // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            
+            var alertPopup = $ionicPopup.alert({
+                 title: '¿Conexión?',
+                 template: 'Al parecer no tienes conexión a internet'
+              });
+            
+      });
   }
   
