@@ -26,7 +26,6 @@ angular.module('reportModule', ['ngStorage'])
     $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
         insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
-        console.log($localStorage.CORREO_USUARIO);
     }
     
     $scope.guardarInfoReporteGeneralAdopcion = function(){
@@ -48,9 +47,9 @@ function obtenerUbicacion($localStorage) {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
             $localStorage.latitud = pos["lat"];
             $localStorage.longitud = pos["lng"];
-
         });
     }
     else {
@@ -65,7 +64,7 @@ function insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage) {
     $http.post(link, {
         method: 'add',
         longitud: $localStorage.longitud,
-        latitud: $localStorage.longitud
+        latitud: $localStorage.latitud
     }).then(function(result) {
 
         $scope.response = result.data;
