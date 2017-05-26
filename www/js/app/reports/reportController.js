@@ -140,7 +140,7 @@ function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $loc
 }
 
 function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage) {
-
+    
     var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
     
     $http.post(link, {

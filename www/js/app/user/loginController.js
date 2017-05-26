@@ -12,6 +12,7 @@ angular.module('loginModule', ['ngStorage'])
 
 function validarUsuario($http,$scope, $ionicPopup, $state, $localStorage){
     
+    $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
      var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
  
         $http.post(link, {method:'validarUsuario', email : $scope.email, password : $scope.password }).then(function (result){
