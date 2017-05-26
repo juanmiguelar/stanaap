@@ -10,15 +10,39 @@ angular.module('reportModule', ['ngStorage'])
     }
     
     $scope.guardarInfoReporteGeneralMaltrato = function(){
-        $localStorage.tipoMaltrato = $scope.tipo;
-        $localStorage.tituloMaltrato = $scope.titulo;
-        $localStorage.descripcionMaltrato = $scope.descripcion;
+         if($scope.titulo == null || $scope.descripcion == null  || $scope.tipo == null){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReportMaltratoAbandono');
+                }); 
+        }else{
+            $localStorage.tipoMaltrato = $scope.tipo;
+            $localStorage.tituloMaltrato = $scope.titulo;
+            $localStorage.descripcionMaltrato = $scope.descripcion;
+            $state.go('app.animalMaltratoAbandonoInfo');
+        }
+       
     }
     
     $scope.guardarInfoReporteMaltrato = function() {
-        insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-        insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+        if($scope.especie ==  null){
+             var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.animalMaltratoAbandonoInfo');
+                }); 
+        }else{
+            insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+            insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
         
+            $state.go('app.home');
+        }
+       
     }
     
     ///SCOPES DE CASOS DE ADOPCION
@@ -29,13 +53,35 @@ angular.module('reportModule', ['ngStorage'])
     }
     
     $scope.guardarInfoReporteGeneralAdopcion = function(){
-        $localStorage.titulo = $scope.titulo;
-        $localStorage.descripcion = $scope.descripcion;
+        if($scope.titulo == null || $scope.descripcion == null){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReportAdopcion');
+                }); 
+        }else{
+            $localStorage.titulo = $scope.titulo;
+            $localStorage.descripcion = $scope.descripcion;
+            $state.go('app.animalAdopcionInfo');
+        }
     }
     
     $scope.guardarInfoReporteAdopcion = function() {
-        insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-        insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+        if($scope.tamanno == null || $scope.especie ==  null){
+             var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.animalAdopcionInfo');
+                }); 
+        }else{
+            insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+            insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+            $state.go('app.home');
+        }
         
     };
 });
