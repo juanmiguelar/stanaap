@@ -2,12 +2,25 @@ angular.module('reportModule', ['ngStorage'])
 
 
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
+    ///SCOPES DE CASOS DE MALTRATO O ABANDONO
     
-    $scope.crearReporteAbandonoMaltrato = function(){
+    $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
         insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
+    }
+    
+    $scope.guardarInfoReporteGeneralMaltrato = function(){
+        $localStorage.tipoMaltrato = $scope.tipo;
+        $localStorage.tituloMaltrato = $scope.titulo;
+        $localStorage.descripcionMaltrato = $scope.descripcion;
+    }
+    
+    $scope.guardarInfoReporteMaltrato = function() {
+        insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+        insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
         
     }
+    
     ///SCOPES DE CASOS DE ADOPCION
     
     $scope.ubicacionAdopcion = function(){
@@ -77,10 +90,8 @@ function insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorag
     });
 }
 
-function insertarAnimalMaltratoAbandono($http, $scope, $ionicPopup, $state, $localStorage) {
 
-    $scope.especie = "Perro";
-    $scope.raza = "Beagle";
+function insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage) {
 
     var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/animalMaltratoRouter.php';
 
@@ -88,21 +99,43 @@ function insertarAnimalMaltratoAbandono($http, $scope, $ionicPopup, $state, $loc
         method: 'add',
         especieMaltrato: $scope.especie,
         raza: $scope.raza
+        
+    }).then(function(result) {
+        
+        $scope.response = result.data;
+        $localStorage.ID_MALTRATO = $scope.response;
+    });
+}
+
+
+function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage) {
+
+      var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+    
+    $http.post(link, {
+        method: 'addGeneralMaltrato',
+        titulo: $localStorage.tituloMaltrato,
+        descripcion: $localStorage.descripcionMaltrato,
+        id_direccion: $localStorage.ID_DIRECCION,
+        id_maltrato: $localStorage.ID_MALTRATO,
+        correo: $localStorage.CORREO_USUARIO,
+        tipo: $localStorage.tipoMaltrato
+        
     }).then(function(result) {
 
         $scope.response = result.data;
-        $scope.respuesta = $scope.response.replace('\n', '');
-
-    }).then(function successCallback(response) {
-        $scope.respuesta = true;
-    }, function errorCallback(response) {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Servidor no disponible',
-            template: 'Lo sentimos!.'
-        });
-        alertPopup.then(function(res) {
-            $state.go('app.home');
-        });
+        console.log($scope.response);
+        
+        if($scope.response == 1){
+            var alertPopup = $ionicPopup.alert({
+                    title: 'Reportar caso',
+                    template: 'Se ha reportado el caso!'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.home');
+                });
+        }
+        
     });
 }
 
