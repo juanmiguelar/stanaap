@@ -1,1 +1,1 @@
-angular.module('registerModule', []);
+angular.module('registerModule', ['ngStorage']);
