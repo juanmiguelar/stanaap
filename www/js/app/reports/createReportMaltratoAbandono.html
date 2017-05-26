@@ -13,10 +13,9 @@
         <label class="item item-input item-select">
             <i class="icon ion-android-list placeholder-icon"></i>
             <div class="input-label"> Tipo</div>
-            <select ng-model="tipo" ng-change="showSelectValue(tipo)">
+            <select ng-model="tipo" >
               <option value="maltrato" selected>Maltrato</option>
               <option value="abandono">Abandono</option>
-              <option value="adopcion">Adopción</option>
             </select>
         </label>
 
@@ -39,17 +38,11 @@
             <input type="file" accept="image/*" class="upload" />
         </div>
 
-        <div class="buttonHolder">
-            <button class="button button-large btn-registrarse" ng-click="insertarReporte()">
-              Continuar
-            </button>
-        </div>
-        
       <div class="buttonHolder">
-      <button onclick="window.location.href='/#/app/animalMaltratoAbandonoInfo'" class="button button-large btn-registrarse" ng-click="insertarReporte()" >
-          Continuar
-        </button>
-    </div>
+          <button onclick="window.location.href='/#/app/animalMaltratoAbandonoInfo'" class="button button-large btn-registrarse" ng-click="guardarInfoReporteGeneralMaltrato()" >
+              Continuar
+          </button>
+      </div>
   </ion-content>
 </ion-view>    
 
