@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
             '../../www/lib/angular/angular.js',
             '../../www/lib/angular-mocks/angular-mocks.js',
-            '../../www/js/app/user/registerController.js',
+            '../../tests/unit-tests/User/registerController.js',
             '*.js'
     ],
 
