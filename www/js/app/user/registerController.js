@@ -73,7 +73,8 @@ angular.module('registerModule',['ngStorage'])
         }).then(function(result) {
     
             $scope.response = result.data;
-            var respuesta = $scope.response.replace('\n', '');
+            console.log($scope.response);
+            var respuesta = $scope.response;
             $scope.respuestaRegistarusuario = respuesta;        
             
             if (respuesta == 1) {
