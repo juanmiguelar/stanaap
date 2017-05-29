@@ -4,21 +4,21 @@ describe('Prueba Usuario', function() {
         module('registerModule');
         
     });
-     var scope, ionicPopup, state, http, ctrl,$httpBackend;
+     var scope, ionicPopup, state, $http, ctrl, $httpBackend;
         
     state = jasmine.createSpyObj('$state spy', ['go']);
         
     ionicPopup = jasmine.createSpyObj('$ionicPopup spy', ['alert']);
     
     
-    
-    describe('Prueba Registrarse', function (){
+    describe('Pruebas para registrar de usuarios', function (){
        
          
-        beforeEach(inject(function($controller, $rootScope){
+        beforeEach(inject(function($controller, $rootScope, $injector, _$http_,_$httpBackend_){
                 scope = $rootScope.$new();
                 ctrl = $controller('registerController', {
-                    $http:http, 
+                    $http:_$http_,
+                    $httpBackend:_$httpBackend_,
                     $scope:scope, 
                     $ionicPopup:ionicPopup, 
                     $state:state
@@ -26,61 +26,47 @@ describe('Prueba Usuario', function() {
             })
         );
         
-        
         it('debería validar formato incorrecto email', function(){
             scope.correo = "juan@gmail";
-            scope.register();
+            scope.validarEmail();
             expect(scope.resultadoEmail).toBe(false);
         });
         
         it('debería validar que las los contraseñas sean iguales', function(){
             scope.contrasenna = "123";
-            scope.verify = "12";
-            scope.register();
-            expect(scope.resultadoContrasenna).toBe(false);
+            scope.verify = "123";
+            scope.validarContraseña();
+            expect(scope.resultadoContrasenna).toBe(true);
+        });
+       
+      describe('Mocked HTTP Requests', function() {
+    
+        var $httpBackend;
+    
+        beforeEach(inject(function($injector) {
+          // Set up the mock http service responses
+          
+          $httpBackend = $injector.get('$httpBackend');
+          $httpBackend.when('POST', 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php')
+            .respond(200, {method: 'add',  correo: "messi@gmail.com", contrasenna: "11234",nombre : "Leo"});
+         }));
+         
+        afterEach(function() {
+         $httpBackend.verifyNoOutstandingExpectation();
+         $httpBackend.verifyNoOutstandingRequest();
+        });
+    
+    
+        it('should have sent a POST request to the checkuser API', function() {
+            scope.insertarUser();
+            $httpBackend.expectPOST('https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php');
+            expect(scope.valid).toEqual(true);
+            $httpBackend.flush();
         });
          
-        it('debería registrar un usuario', function(){
-            //Se definen valores a insertar, valores de prueba 
-            scope.contrasenna = "123";
-            scope.verify = "123";
-            scope.correo = "prueba@gmail.com";
-            
-            // $httpBackend.when('POST', 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php', function(data) {
-            //   return angular.fromJson(data).username === 'hardcoded_user'
-            // })
-            // .respond({ 
-            //   username: 'hardcoded_user'
-            // });
-        
-            // $httpBackend.flush();
-
-             
-            
-            //Llama el metodo
-            // scope.register();
-            
-            //Si es 1 es porque se insertó a la BD
-            // expect(scope.respuestaRegistarusuario).toBe(1);
         });
-        
+            
     });
     
 });
-//STEVEN ALEX
-// describe('Prueba de 1', function() {
-//     var scope;
-    
-//     beforeEach(function () {
-//     module('registerModule');
-//     });
-    
-//     beforeEach(inject(function($rootScope, $controller){
-//         scope = $rootScope.$new();
-//         $controller('prueba', {$scope: scope});
-//     }));
-    
-//         it('Se cumpla el registro', function() {
-//             expect(scope.settings.casa).toEqual(true);
-//         });
-// });
+

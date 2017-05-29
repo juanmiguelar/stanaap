@@ -1,5 +1,5 @@
 
-<ion-view class="view" view-title="Stanapp">
+<ion-view cache-view="false" class="view" view-title="Stanapp">
     <ion-nav-buttons side="right">
         <a class="button button-icon ion-android-search" ng-click="toggleSearch()"></a>
     </ion-nav-buttons>
@@ -13,41 +13,37 @@
       <i class="icon ion-android-list placeholder-icon"></i>
     <div class="input-label"> Especie
     </div>
-    <select>
+    <select ng-model="especie" ng-required="true">
       <option selected>Perros</option>
       <option>Gatos</option>
       <option>Aves</option>
     </select>
   </label>
   
-  <label class="item item-input item-select">
-      <i class="icon ion-android-list placeholder-icon"></i>
-    <div class="input-label"> Raza
-    </div>
-    <select>
-      <option selected>X</option>
-      <option>Y</option>
-      <option>Z</option>
-    </select>
-  </label>
+   <label class="item item-input item-floating-label">
+        <div class="letras">
+         <i class="icon ion-android-list placeholder-icon"></i>
+        <input type="text" placeholder="Raza" ng-model="raza">
+        </div>
+      </label>
 
      <label class="item item-input item-floating-label">
         <div class="letras">
          <i class="icon ion-android-list placeholder-icon"></i>
-        <input type="text" placeholder="Edad" ng-model="edad">
+        <input type="number" placeholder="Edad" ng-model="edad">
         </div>
       </label>
       
        <label class="item item-input item-floating-label">
         <div class="letras">
          <i class="icon ion-android-list placeholder-icon"></i>
-        <input type="text" placeholder="Tamaño" ng-model="tamanno">
+        <input type="text" placeholder="Tamaño" ng-model="tamanno" ng-required="true">
         </div>
       </label>
  
       <div class="buttonHolder">
-      <button onclick="window.location.href='/#/app/animalMaltratoAbandonoInfo'" class="button button-large btn-registrarse" ng-click="" >
-          Finalizar Reporte
+      <button class="button button-large btn-registrarse" ng-click="guardarInfoReporteAdopcion()" >
+          Finalizar
         </button>
     </div>
   </ion-content>

@@ -1,1 +1,1 @@
-angular.module('reportModule', []);
+angular.module('reportModule', ['ngStorage']);

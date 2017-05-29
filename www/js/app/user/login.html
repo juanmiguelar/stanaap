@@ -1,4 +1,4 @@
-<ion-view hide-nav-bar="true" class="view" view-title="Log In">
+<ion-view cache-view="false" hide-nav-bar="true" class="view" view-title="Log In">
     <link href="css/login.css" rel="stylesheet">
   <ion-content class="login" has-header="false">
   <ion-side-menu side="left" is-enabled="false" width="275" class="menu menu-left" style="width: 275px; z-index: -1;"> </ion-side-menu>
@@ -10,14 +10,14 @@
       <label class="item item-input item-floating-label">
         <div class="letras">
         <i class="icon ion-email placeholder-icon"></i>
-        <input type="email" placeholder="Correo Electrónico" ng-model="email">
+        <input type="email" placeholder="Correo Electrónico" ng-model="email" required>
         </div>
       </label>
       
       <label class="item item-input item-floating-label">
         <div class="letras">
           <i class="icon ion-key placeholder-icon"></i>
-          <input type="password" placeholder="Ingrese una contraseña" ng-model="password">
+          <input type="password" placeholder="Ingrese una contraseña" ng-model="password" required>
         </div>
       </label>
       <div class="buttonHolder">

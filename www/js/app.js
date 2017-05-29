@@ -1,6 +1,6 @@
 // Esto es un conflicto con alex
 
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'ngStorage'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -51,8 +51,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/createReportMaltratoAbandono', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/createReportMaltratoAbandono.html'
-          //AÑADIR CONTROLLER
+          templateUrl:'js/app/reports/createReportMaltratoAbandono.html',
+          controller: 'reportController'
         }
       }
     })
@@ -61,8 +61,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/animalMaltratoAbandonoInfo', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/animalMaltratoAbandonoInfo.html'
-          //AÑADIR CONTROLLER
+          templateUrl:'js/app/reports/animalMaltratoAbandonoInfo.html',
+         controller: 'reportController'
         }
       }
     })
@@ -71,8 +71,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/animalAdopcionInfo', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/animalAdopcionInfo.html'
-          //AÑADIR CONTROLLER
+          templateUrl:'js/app/reports/animalAdopcionInfo.html',
+          controller: 'reportController'
         }
       }
     })
@@ -91,8 +91,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/createReportAdopcion', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/createReportAdopcion.html'
-          //AÑADIR CONTROLL
+          templateUrl:'js/app/reports/createReportAdopcion.html',
+          controller: 'reportController'
         }
       }
     })

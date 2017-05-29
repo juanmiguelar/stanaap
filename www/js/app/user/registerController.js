@@ -1,36 +1,47 @@
-angular.module('registerModule',[])
+angular.module('registerModule',['ngStorage'])
 
-.controller('registerController', function ($http, $scope, $ionicPopup, $state) {
+.controller('registerController', function ($http, $scope, $ionicPopup, $state, $localStorage) {
     
     $scope.register = function() {
-        // Valido la contraseña
-        var result = validateEmail($scope.correo);
-        $scope.resultadoEmail = result;
         
-        // Valido las contraseñas
-        var contras = verifyContra($scope.contrasenna, $scope.verify)
-        $scope.resultadoContrasenna = contras;
-        
-        // Si las 2 están bien se puede registrar
-        if (result && contras) {
-            insertarUsuario($http, $scope, $ionicPopup, $state);
-        }else{
-            
-            // Identificar el fallo para poder dar feedback
-            if (!result) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Datos Inválidos',
-                    template: 'El correo no es válido.'
+    if($scope.nombre == null || $scope.contrasenna == null || $scope.verify == null){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Datos incompletos',
+                template: 'Debe ingresar todos los datos del formulario'
                 });
-            }
+                alertPopup.then(function(res) {
+                    $state.go('app.register');
+                });   
+    }else{
+            // Valido la contraseña
+            var result = validateEmail($scope.correo);
+            $scope.resultadoEmail = result;
             
-            if (!contras) {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'Datos Inválidos',
-                    template: 'Las contraseñas no coinciden.'
-                })
+            // Valido las contraseñas
+            var contras = verifyContra($scope.contrasenna, $scope.verify)
+            $scope.resultadoContrasenna = contras;
+            
+            // Si las 2 están bien se puede registrar
+            if (result && contras) {
+                insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage);
+            }else{
+                
+                // Identificar el fallo para poder dar feedback
+                if (!result) {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Datos Inválidos',
+                        template: 'El correo no es válido.'
+                    });
+                }
+                
+                if (!contras) {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Datos Inválidos',
+                        template: 'Las contraseñas no coinciden.'
+                    })
+                }
             }
-        }
+        }    
     }
 
 })
@@ -51,7 +62,7 @@ angular.module('registerModule',[])
         return contra == verify;
     }
     
-    function insertarUsuario($http, $scope, $ionicPopup, $state) {
+    function insertarUsuario($http, $scope, $ionicPopup, $state, $localStorage) {
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
     
         $http.post(link, {
@@ -62,10 +73,12 @@ angular.module('registerModule',[])
         }).then(function(result) {
     
             $scope.response = result.data;
-            var respuesta = $scope.response.replace('\n', '');
+            console.log($scope.response);
+            var respuesta = $scope.response;
             $scope.respuestaRegistarusuario = respuesta;        
             
             if (respuesta == 1) {
+                $localStorage.CORREO_USUARIO = $scope.correo;
                 var alertPopup = $ionicPopup.alert({
                     title: 'Bienvenido a Stanapp',
                     template: 'Se ha registrado con éxito'

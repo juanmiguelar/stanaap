@@ -1,5 +1,4 @@
-
-<ion-view hide-nav-bar="true" class="view" view-title="Registrar">
+<ion-view cache-view="false" hide-nav-bar="true" class="view" view-title="Registrar">
     <link href="css/register.css" rel="stylesheet">
     
   <ion-content class="register" has-header="false">
@@ -12,7 +11,7 @@
       <label class="item item-input item-floating-label">
         <div class="letras">
          <i class="icon ion-person placeholder-icon"></i>
-        <input type="text" placeholder="Nombre" ng-model="nombre">
+        <input type="text" placeholder="Nombre" ng-model="nombre" ng-required="true">
         </div>
       </label>
       <label class="item item-input item-floating-label">

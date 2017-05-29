@@ -1,4 +1,5 @@
-<ion-view class="view" view-title="Stanapp">
+<ion-view cache-view="false" class="view" view-title="Stanapp">
+    
     <ion-nav-buttons side="right">
         <a class="button button-icon ion-android-search" ng-click="toggleSearch()"></a>
     </ion-nav-buttons>
@@ -12,23 +13,22 @@
         <label class="item item-input item-select">
             <i class="icon ion-android-list placeholder-icon"></i>
             <div class="input-label"> Tipo</div>
-            <select ng-model="tipo" ng-change="showSelectValue(tipo)">
+            <select ng-model="tipo" ng-required="true">
               <option value="maltrato" selected>Maltrato</option>
               <option value="abandono">Abandono</option>
-              <option value="adopcion">Adopción</option>
             </select>
         </label>
 
         <label class="item item-input item-floating-label">
             <div class="letras">
                 <i class="icon ion-edit placeholder-icon"></i>
-                <input type="text" placeholder="Título" ng-model="titulo">
+                <input type="text" placeholder="Título" ng-model="titulo" ng-required="true">
             </div>
         </label>
         
         <div class="textarea">
             <label class="item item-input item-floating-label input-textarea">
-                <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5" ng-model="descripcion"></textarea>
+                <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5" ng-model="descripcion" ng-required="true"></textarea>
             </label>
         </div>
         
@@ -38,17 +38,11 @@
             <input type="file" accept="image/*" class="upload" />
         </div>
 
-        <div class="buttonHolder">
-            <button class="button button-large btn-registrarse" ng-click="insertarReporte()">
-              Continuar
-            </button>
-        </div>
-        
       <div class="buttonHolder">
-      <button onclick="window.location.href='/#/app/animalMaltratoAbandonoInfo'" class="button button-large btn-registrarse" ng-click="" >
-          Continuar
-        </button>
-    </div>
+          <button  class="button button-large btn-registrarse" ng-click="guardarInfoReporteGeneralMaltrato()" >
+              Continuar
+          </button>
+      </div>
   </ion-content>
 </ion-view>    
 
