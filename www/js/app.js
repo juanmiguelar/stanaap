@@ -32,7 +32,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/home', 
       views:{
         'content':{
-          templateUrl:'js/app/main/home.html'
+          templateUrl:'js/app/main/home.html',
+          controller: 'showReportController'
         }
       }
     })
