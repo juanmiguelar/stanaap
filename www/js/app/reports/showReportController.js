@@ -14,7 +14,7 @@ angular.module('reportModule')
         $http.post(link, {
             method: 'show'
         }).then(function successCallback(response) {
-            $scope.arrayCasos = [response.data];
+            $scope.arrayCasos = response.data;
             
             
           }, function errorCallback(response) {
