@@ -1,8 +1,38 @@
 angular.module('reportModule')
 
 
-.controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
+.controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
+                                        $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, 
+                                        $cordovaActionSheet) {
     ///SCOPES DE CASOS DE MALTRATO O ABANDONO
+    $scope.image = null;
+ 
+    $scope.showAlert = function(title, msg) {
+      var alertPopup = $ionicPopup.alert({
+        title: title,
+        template: msg
+      });
+    };
+    
+    $scope.loadImage = function() {
+  var options = {
+    title: 'Select Image Source',
+    buttonLabels: ['Load from Library', 'Use Camera'],
+    addCancelButtonWithLabel: 'Cancel',
+    androidEnableCancelButton : true,
+  };
+  $cordovaActionSheet.show(options).then(function(btnIndex) {
+    var type = null;
+    if (btnIndex === 1) {
+      type = Camera.PictureSourceType.PHOTOLIBRARY;
+    } else if (btnIndex === 2) {
+      type = Camera.PictureSourceType.CAMERA;
+    }
+    if (type !== null) {
+      $scope.selectPicture(type);
+    }
+  });
+};
     
     $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
