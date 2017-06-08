@@ -3,7 +3,7 @@ angular.module('reportModule')
 .controller('showReportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
    
     mostrarReportes($http, $scope, $ionicPopup, $state);
-    
+   
      
         
     function mostrarReportes($http, $scope, $ionicPopup, $state) {
@@ -14,7 +14,9 @@ angular.module('reportModule')
         $http.post(link, {
             method: 'show'
         }).then(function successCallback(response) {
-            $scope.arrayCasos = angular.toJson(response.data);
+            $scope.arrayCasos = [response.data];
+            
+            
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.

@@ -6,7 +6,11 @@
             .
             .
             .
+            
             {{arrayCasos}}
+            <div ng-repeat="caso in arrayCasos track by $id(caso)">
+              {{caso.ID_REPORTE}}
+            </div>
           </div>
         </div>
         <div >
