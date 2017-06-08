@@ -32,7 +32,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/home', 
       views:{
         'content':{
-          templateUrl:'js/app/main/home.html'
+          templateUrl:'js/app/main/home.html',
+           controller: 'showReportController'
         }
       }
     })
@@ -106,7 +107,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
         }
       }
     });
-
+    
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
 });
