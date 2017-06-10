@@ -4,8 +4,7 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state, $localStorage);    
-
+    mostrarReportes($http, $scope, $state,$localStorage);  
 })
 
 // Cargando el array del servidor
