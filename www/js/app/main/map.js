@@ -16,7 +16,7 @@ function mostrarReportes($http, $scope, $state) {
     
         $http.post(link, {
             method: 'show',
-            user: $localStorage.CORREO_USUARIO
+            email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
             initMap($scope);
