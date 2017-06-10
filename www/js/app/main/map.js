@@ -4,12 +4,12 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state);    
+    mostrarReportes($http, $scope, $state, $localStorage);    
 
 })
 
 // Cargando el array del servidor
-function mostrarReportes($http, $scope, $state) {
+function mostrarReportes($http, $scope, $state,$localStorage) {
     
         // Trae la información de los reportes(Adopción y maltrato) con la direccion
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
