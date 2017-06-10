@@ -18,7 +18,8 @@ module.exports = function(config) {
             '../../www/lib/angular/angular.js',
             '../../www/lib/angular-mocks/angular-mocks.js',
             '../../tests/unit-tests/User/registerController.js',
-            '*.js'
+            '../../tests/unit-tests/User/loginController.js',
+            'register_controller.spec.js'
     ],
 
 

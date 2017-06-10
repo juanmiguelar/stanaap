@@ -18,27 +18,9 @@ angular.module('registerModule',[])
     
     
     $scope.insertarUser = function(){
-        insertarUsuario($http, $scope);
+     insertarUsuario($http, $scope);
     }
-    function insertarUsuario($http, $scope) {
-        var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
-     
-        $http.post(link, {
-            method: 'add',
-            correo: $scope.correo,
-            contrasenna: $scope.contrasenna,
-            nombre: $scope.nombre,
-        }).success(function(data, status, headers, config) {
-    
-            $scope.valid = true;
-        }).error(function(data, status, headers, config) {
-          $scope.valid = false;
-        });
-    }
-    
-    
-
-})
+});
    
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -48,5 +30,18 @@ angular.module('registerModule',[])
     function verifyContra(contra, verify){
         return contra == verify;
     }
+    function insertarUsuario($http, $scope) {
+        var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/userRouter.php';
+     
+        $http.post(link, {
+            method: 'add',
+            correo: $scope.correo,
+            contrasenna: $scope.contrasenna,
+            nombre: $scope.nombre
+        }).then(function(result) {
     
+            $scope.response = result.data;
+            console.log($scope.response);
+        });
+    }
     

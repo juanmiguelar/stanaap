@@ -1,8 +1,9 @@
 <ion-view cache-view="false" class="view" view-title="Stanapp">
-    
+     
     <ion-nav-buttons side="right">
         <a class="button button-icon ion-android-search" ng-click="toggleSearch()"></a>
     </ion-nav-buttons>
+    
 
     <div class="list form" ng-controller="reportController">
         <link href="css/create-report.css" rel="stylesheet">
@@ -31,11 +32,13 @@
                 <textarea placeholder="Descripción (máximo 300 palabras)" cols="30" rows="5" ng-model="descripcion" ng-required="true"></textarea>
             </label>
         </div>
+        <img ng-src="{{pathForImage(image)}}" style="width: 100%; height: 100%;">
         
-        <div class="fileUpload btn btn-primary">
-            <i class="icon ion-camera placeholder-icon"></i>
-            <span class="upload-label">Subir Imagen</span>
-            <input type="file" accept="image/*" class="upload" />
+        <div class="btn btn-primary">
+            <button class="button icon-left ion-upload" ng-click="uploadImage()" ng-disabled="image === null">Upload</button>
+        </div>
+        <div class="btn btn-primary">
+            <button class="button icon-left ion-camera" ng-click="loadImage()">Take Photo</button>
         </div>
 
       <div class="buttonHolder">
