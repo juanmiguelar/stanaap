@@ -1,6 +1,7 @@
 // Esto es un conflicto con alex
 
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'ngStorage'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'ngStorage','ngCordova'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
