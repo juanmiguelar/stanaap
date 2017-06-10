@@ -4,8 +4,7 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state,$localStorage);    
-
+    mostrarReportes($http, $scope, $state, $localStorage);   
 })
 
 // Cargando el array del servidor
@@ -19,7 +18,6 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
-            console.log(response.data);
             initMap($scope);
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
