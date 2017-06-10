@@ -5,35 +5,6 @@ angular.module('reportModule')
                                         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, 
                                         $cordovaActionSheet) {
     ///SCOPES DE CASOS DE MALTRATO O ABANDONO
-    $scope.image = null;
- 
-    $scope.showAlert = function(title, msg) {
-      var alertPopup = $ionicPopup.alert({
-        title: title,
-        template: msg
-      });
-    };
-    
-    $scope.loadImage = function() {
-  var options = {
-    title: 'Select Image Source',
-    buttonLabels: ['Load from Library', 'Use Camera'],
-    addCancelButtonWithLabel: 'Cancel',
-    androidEnableCancelButton : true,
-  };
-  $cordovaActionSheet.show(options).then(function(btnIndex) {
-    var type = null;
-    if (btnIndex === 1) {
-      type = Camera.PictureSourceType.PHOTOLIBRARY;
-    } else if (btnIndex === 2) {
-      type = Camera.PictureSourceType.CAMERA;
-    }
-    if (type !== null) {
-      $scope.selectPicture(type);
-    }
-  });
-};
-    
     $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
         insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
@@ -67,6 +38,7 @@ angular.module('reportModule')
                     $state.go('app.animalMaltratoAbandonoInfo');
                 }); 
         }else{
+            
             insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
             insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
         
@@ -199,8 +171,6 @@ angular.module('reportModule')
         }).then(function(result) {
     
             $scope.response = result.data;
-            console.log($scope.response);
-            
             if($scope.response == 1){
                 var alertPopup = $ionicPopup.alert({
                         title: 'Reportar caso',
