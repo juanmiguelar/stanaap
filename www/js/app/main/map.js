@@ -4,20 +4,22 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state);    
+    mostrarReportes($http, $scope, $state,$localStorage);    
 
 })
 
 // Cargando el array del servidor
-function mostrarReportes($http, $scope, $state) {
+function mostrarReportes($http, $scope, $state,$localStorage) {
     
         // Trae la información de los reportes(Adopción y maltrato) con la direccion
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
     
         $http.post(link, {
-            method: 'show'
+            method: 'show',
+            email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
+            console.log(response.data);
             initMap($scope);
           }, function errorCallback(response) {
             // called asynchronously if an error occurs

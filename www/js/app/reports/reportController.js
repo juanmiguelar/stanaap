@@ -80,6 +80,7 @@ angular.module('reportModule')
                     $state.go('app.animalAdopcionInfo');
                 }); 
         }else{
+            console.log("HOLAA");
             insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
             insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
             $state.go('app.home');
