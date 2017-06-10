@@ -48,8 +48,11 @@ function initMap($scope) {
           map: map,
           icon: 'img/report.png'
         }); 
-     
-        contentString = '<div class="list card">' +
+    
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              contentString = '<div class="list card">' +
       '<div class="item item-avatar">' +
         /* '<img src="img/avatar.jpg"> ' + */
           '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
@@ -65,9 +68,6 @@ function initMap($scope) {
          'Ver Detalles'+
         '</a>'+
         '</div>';
-
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }
