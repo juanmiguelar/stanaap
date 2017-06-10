@@ -15,7 +15,8 @@ function mostrarReportes($http, $scope, $state) {
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
     
         $http.post(link, {
-            method: 'show'
+            method: 'show',
+            email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
             initMap($scope);
