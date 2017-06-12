@@ -1,4 +1,4 @@
-angular.module('reportModule')
+angular.module('showReportModule', ['ngStorage'])
 
 .controller('showReportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
    
@@ -13,7 +13,7 @@ angular.module('reportModule')
     
         $http.post(link, {
             method: 'getID',
-            id: $localStorage.id
+            id: $localStorage.ID
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
             
@@ -22,6 +22,7 @@ angular.module('reportModule')
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           });
+         
     } 
 });
 

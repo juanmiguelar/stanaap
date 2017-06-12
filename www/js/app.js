@@ -1,6 +1,6 @@
 // Esto es un conflicto con alex
 
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'ngStorage','ngCordova'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
 
 
 .run(function($ionicPlatform) {
@@ -35,7 +35,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
       url: '/showReportMaltratoAbandono', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/showReportMaltratoAbandono.html'
+          templateUrl:'js/app/reports/showReportMaltratoAbandono.html',
+          controller: 'showReportController'
         }
       }
     })
