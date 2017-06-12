@@ -19,7 +19,8 @@ module.exports = function(config) {
             '../../www/lib/angular-mocks/angular-mocks.js',
             '../../tests/unit-tests/User/registerController.js',
             '../../tests/unit-tests/User/loginController.js',
-            'register_controller.spec.js'
+            '../../tests/unit-tests/Report/map.js',
+            'map_controller.spec.js'
     ],
 
 
