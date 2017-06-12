@@ -7,8 +7,9 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    
     if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
@@ -29,6 +30,16 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
     templateUrl: 'js/app/menu/menu.html'
   })
   
+  
+  .state('app.showReportMaltratoAbandono', {
+      url: '/showReportMaltratoAbandono', 
+      views:{
+        'content':{
+          templateUrl:'js/app/reports/showReportMaltratoAbandono.html'
+        }
+      }
+    })
+    
    .state('app.home', {
       url: '/home', 
       views:{
@@ -112,49 +123,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
+
 })
 
-/*.controller('MapCtrl', function($scope, $state) {
-  var options = {timeout: 10000, enableHighAccuracy: true};
- 
-  //Localización por CORDOVA
-  //$cordovaGeolocation.getCurrentPosition(options).then(function(position)
-  
-  var uluru = {lat: 10.087, lng: -84.47};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
-    center: uluru
-  })
-   var marcador = new google.maps.LatLng(uluru);
-    
-    var contentString = '<div class="list card">' +
-  '<div class="item item-avatar">' +
-     '<img src="img/avatar.jpg"> ' + 
-      '<h2>Título del caso </h2>' +
-     '<p>Breve descripcion</p>' +
-    '</div>'+
-  
-    '<div class="item item-image">' +
-      '<img src="img/cover.jpg">' +
-    '</div>' +
-  
-   '<a class="item item-icon-left assertive" href="#">' +
-      '<i class="icon ion-navigate"></i>' +
-     'Ver mas detalles'+
-    '</a>'+
-    '</div>';
-  
-    
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-    var nameMarker = "marker";
-    nameMarker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-      title: 'Reporte'
-    });  
-      nameMarker.addListener('click', function() {
-        infowindow.open(map, nameMarker);  
-      });
-});*/
+
