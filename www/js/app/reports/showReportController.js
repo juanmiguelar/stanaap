@@ -12,7 +12,8 @@ angular.module('reportModule')
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
     
         $http.post(link, {
-            method: 'show'
+            method: 'getID',
+            id: $localStorage.id
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
             
