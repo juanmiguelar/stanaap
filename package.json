@@ -52,7 +52,6 @@
       "cordova-plugin-actionsheet": {},
       "cordova-plugin-whitelist": {}
     },
-
     "devDependencies": {
         "angular": "^1.6.4",
         "angular-mocks": "^1.6.4",
@@ -93,4 +92,8 @@
     }
 }
 }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 42081f79d7c7df95f9cafb52689a2e93d4a928fc

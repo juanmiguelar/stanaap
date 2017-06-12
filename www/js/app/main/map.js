@@ -18,7 +18,7 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
-            initMap($scope);
+            initMap($scope,$localStorage);
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -26,7 +26,7 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
     }
 // 
   
-function initMap($scope) {
+function initMap($scope, $localStorage) {
   var uluru = {lat: 10.087, lng: -84.47};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
@@ -52,6 +52,7 @@ function initMap($scope) {
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
+              $localStorage.ID = arrayUbicaciones[i].ID_ADOPCION;
               contentString = '<div class="list card">' +
       '<div class="item item-avatar">' +
         /* '<img src="img/avatar.jpg"> ' + */
@@ -63,7 +64,7 @@ function initMap($scope) {
           /*'<img src="img/cover.jpg">' +*/
         '</div>' +
       
-       '<a class="item item-icon-left assertive" href="#">' +
+       '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
          'Ver Detalles'+
         '</a>'+
