@@ -52,7 +52,8 @@ function initMap($scope, $localStorage) {
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              $localStorage.ID = arrayUbicaciones[i].ID_ADOPCION;
+              $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
+              alert(arrayUbicaciones[i].ID_MALTRATO);
               contentString = '<div class="list card">' +
       '<div class="item item-avatar">' +
         /* '<img src="img/avatar.jpg"> ' + */
