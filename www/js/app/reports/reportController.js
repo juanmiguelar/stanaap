@@ -80,7 +80,7 @@ angular.module('reportModule')
                     $state.go('app.animalAdopcionInfo');
                 }); 
         }else{
-            console.log("HOLAA");
+
             insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
             insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
             $state.go('app.home');
@@ -168,9 +168,8 @@ angular.module('reportModule')
             id_maltrato: $localStorage.ID_MALTRATO,
             correo: $localStorage.CORREO_USUARIO,
             tipo: $localStorage.tipoMaltrato
-            
         }).then(function(result) {
-    
+            
             $scope.response = result.data;
             if($scope.response == 1){
                 var alertPopup = $ionicPopup.alert({
