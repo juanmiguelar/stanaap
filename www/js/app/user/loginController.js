@@ -3,8 +3,6 @@ angular.module('loginModule', ['ngStorage'])
 .controller('loginController', function($http, $scope, $ionicPopup, $state, $localStorage) {
 
     $scope.login = function() {
-        console.log($scope.email);
-        console.log($scope.password);
 
         if ($scope.email == null || $scope.password == null || $scope.email == "" || $scope.password == "") {
             var alertPopup = $ionicPopup.alert({
