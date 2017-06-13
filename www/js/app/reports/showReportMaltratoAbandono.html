@@ -15,15 +15,20 @@
   </div>
   
 <div class="item item-avatar">
-    <h2>{{arrayCasos[0].ESPECIE}}</h2>
-    <p>{{arrayCasos[0]}}</p>
+    <h2>Información del Animal</h2>
+    <h2>Especie: {{arrayCasos[0].ESPECIE_MALTRATO}}</h2>
+    <h2>Raza: {{arrayCasos[0].RAZA}}</h2>
   </div>
   
   <div class="item item-body">
+    <h2>Descipción del reporte:</h2>
     <p> {{arrayCasos[0].DESCRIPCION}} </p>
-    <p>
-      <a href="#" class="subdued">1 Like</a>
-      <a href="#" class="subdued">5 Comments</a>
+    
+  </div>
+  
+  <div class="item item-avatar">
+      <p>
+      <a href="geo:?q={{ubicacion}}" target="_system">Ir a la ubicación</a>
     </p>
   </div>
 
