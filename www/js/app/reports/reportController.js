@@ -5,9 +5,9 @@ angular.module('reportModule',  ['ngStorage'])
                                         $cordovaCamera, $cordovaFile, $cordovaFileTransfer, $cordovaDevice, 
                                         $cordovaActionSheet) {
     ///SCOPES DE CASOS DE MALTRATO O ABANDONO
-    $scope.ubicacionAdopcion = function(){
+    $scope.ubicacionMaltrato = function(){
         obtenerUbicacion($localStorage);
-        insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
+        insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
     }
     
     $scope.guardarInfoReporteGeneralMaltrato = function(){
@@ -51,7 +51,7 @@ angular.module('reportModule',  ['ngStorage'])
     
     $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
-        insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
+        insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
     }
     
     $scope.guardarInfoReporteGeneralAdopcion = function(){
@@ -112,7 +112,7 @@ angular.module('reportModule',  ['ngStorage'])
         }
     }
     
-    function insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage) {
+    function insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage) {
     
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/direccionRouter.php';
     
@@ -123,7 +123,29 @@ angular.module('reportModule',  ['ngStorage'])
         }).then(function successCallback(response) {
             $scope.response = response.data;
             $localStorage.ID_DIRECCION = $scope.response;
-            $state.go('app.createReportMaltratoAbandono');
+            $state.go('app.createReportAdopcion');
+          }, function errorCallback(response) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Ha ocurrido un error',
+                    template: 'La dirección no se pudo obtener.'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReport');
+                });
+          });
+    }
+    
+    function insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage) {
+        var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/direccionRouter.php';
+    
+        $http.post(link, {
+            method: 'add',
+            longitud: $localStorage.longitud,
+            latitud: $localStorage.latitud
+        }).then(function successCallback(response) {
+            $scope.response = response.data;
+            $localStorage.ID_DIRECCION = $scope.response;
+            $state.go('app.createReportAdopcion');
           }, function errorCallback(response) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Ha ocurrido un error',
@@ -148,12 +170,16 @@ angular.module('reportModule',  ['ngStorage'])
         }).then(function successCallback(response) {
             $scope.response = response.data;
             $localStorage.ID_ADOPCION = $scope.response;
-            $state.go('app.createReportMaltratoAbandono');
           }, function errorCallback(response) {
-            
+             var alertPopup = $ionicPopup.alert({
+                    title: 'Ha ocurrido un error',
+                    template: 'Ha ocurrido un error con el reporte'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReport');
+                });
           });
     }
-    
     
     function insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage) {
     
@@ -178,10 +204,9 @@ angular.module('reportModule',  ['ngStorage'])
           });
     }
     
-    
     function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage) {
     
-          var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+        var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
         
         $http.post(link, {
             method: 'addGeneralMaltrato',
@@ -216,7 +241,7 @@ angular.module('reportModule',  ['ngStorage'])
     
     function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage) {
         
-        var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+    var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
         
         $http.post(link, {
             method: 'addGeneralAdopcion',
@@ -226,9 +251,8 @@ angular.module('reportModule',  ['ngStorage'])
             id_adopcion: $localStorage.ID_ADOPCION,
             correo: $localStorage.CORREO_USUARIO
             
-        }).then(function(result) {
-    
-            $scope.response = result.data;
+        }).then(function successCallback(response) {
+            $scope.response = response.data;
             if($scope.response == 1){
                 var alertPopup = $ionicPopup.alert({
                         title: 'Reportar caso',
@@ -238,12 +262,14 @@ angular.module('reportModule',  ['ngStorage'])
                         $state.go('app.home');
                     });
             }
-            
-        });
+          }, function errorCallback(response) {
+             var alertPopup = $ionicPopup.alert({
+                        title: 'Ocurrió un error',
+                        template: 'No se pudo reportar el caso.'
+                    });
+                    alertPopup.then(function(res) {
+                        $state.go('app.createReport');
+                    });
+          });
     
     }
-
-// $scope.showSelectValue = function(tipo) {
-//     tipoReporte = tipo; 
-
-// }
