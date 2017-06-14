@@ -52,6 +52,7 @@ angular.module('reportModule')
     $scope.ubicacionAdopcion = function(){
         obtenerUbicacion($localStorage);
         insertarDireccion($http, $scope, $ionicPopup, $state, $localStorage);
+        
     }
     
     $scope.guardarInfoReporteGeneralAdopcion = function(){
