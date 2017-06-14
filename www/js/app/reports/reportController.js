@@ -123,7 +123,7 @@ angular.module('reportModule',  ['ngStorage'])
         }).then(function successCallback(response) {
             $scope.response = response.data;
             $localStorage.ID_DIRECCION = $scope.response;
-            $state.go('app.createReportAdopcion');
+            $state.go('app.createReportMaltratoAbandono');
           }, function errorCallback(response) {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Ha ocurrido un error',
