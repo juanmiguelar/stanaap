@@ -32,7 +32,7 @@ angular.module('reportModule')
         if($scope.especie ==  null){
              var alertPopup = $ionicPopup.alert({
                 title: 'Datos incompletos',
-                template: 'Debe ingresar todos los datos del formulario'
+                template: 'Debe ingresar la especie'
                 });
                 alertPopup.then(function(res) {
                     $state.go('app.animalMaltratoAbandonoInfo');
@@ -103,7 +103,7 @@ angular.module('reportModule')
             });
         }
         else {
-            console.log("No sirve");
+            console.log("No se ha podido encontrar su ubicación");
         }
     }
     
@@ -115,11 +115,19 @@ angular.module('reportModule')
             method: 'add',
             longitud: $localStorage.longitud,
             latitud: $localStorage.latitud
-        }).then(function(result) {
-    
-            $scope.response = result.data;
+        }).then(function successCallback(response) {
+            $scope.response = response.data;
             $localStorage.ID_DIRECCION = $scope.response;
-        });
+            $state.go('app.createReportMaltratoAbandono');
+          }, function errorCallback(response) {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Ha ocurrido un error',
+                    template: 'La dirección no se pudo obtener.'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReport');
+                });
+          });
     }
     
     function insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage) {
@@ -132,11 +140,13 @@ angular.module('reportModule')
             raza: $scope.raza,
             edad: $scope.edad,
             tamanno: $scope.tamanno
-        }).then(function(result) {
-            
-            $scope.response = result.data;
+        }).then(function successCallback(response) {
+            $scope.response = response.data;
             $localStorage.ID_ADOPCION = $scope.response;
-        });
+            $state.go('app.createReportMaltratoAbandono');
+          }, function errorCallback(response) {
+            
+          });
     }
     
     
@@ -149,11 +159,11 @@ angular.module('reportModule')
             especieMaltrato: $scope.especie,
             raza: $scope.raza
             
-        }).then(function(result) {
-            
-            $scope.response = result.data;
-            $localStorage.ID_MALTRATO = $scope.response;
-        });
+        }).then(function successCallback(response) {
+           $scope.response = response.data;
+           $localStorage.ID_MALTRATO = $scope.response;
+          }, function errorCallback(response) {
+          });
     }
     
     
@@ -169,9 +179,9 @@ angular.module('reportModule')
             id_maltrato: $localStorage.ID_MALTRATO,
             correo: $localStorage.CORREO_USUARIO,
             tipo: $localStorage.tipoMaltrato
-        }).then(function(result) {
+        }).then(function successCallback(response) {
+           $scope.response = response.data;
             
-            $scope.response = result.data;
             if($scope.response == 1){
                 var alertPopup = $ionicPopup.alert({
                         title: 'Reportar caso',
@@ -181,8 +191,15 @@ angular.module('reportModule')
                         $state.go('app.home');
                     });
             }
-            
-        });
+          }, function errorCallback(response) {
+              var alertPopup = $ionicPopup.alert({
+                        title: 'Ocurrió un error',
+                        template: 'No se pudo reportar el caso.'
+                    });
+                    alertPopup.then(function(res) {
+                        $state.go('app.home');
+                    });
+          });
     }
     
     function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage) {
