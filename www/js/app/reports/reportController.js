@@ -1,4 +1,4 @@
-angular.module('reportModule')
+angular.module('reportModule',  ['ngStorage'])
 
 
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
@@ -103,7 +103,13 @@ angular.module('reportModule')
             });
         }
         else {
-            console.log("No se ha podido encontrar su ubicación");
+             var alertPopup = $ionicPopup.alert({
+                    title: 'Ha ocurrido un error',
+                    template: 'Error con la ubicación'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReport');
+                });
         }
     }
     
@@ -163,6 +169,13 @@ angular.module('reportModule')
            $scope.response = response.data;
            $localStorage.ID_MALTRATO = $scope.response;
           }, function errorCallback(response) {
+               var alertPopup = $ionicPopup.alert({
+                    title: 'Ha ocurrido un error',
+                    template: 'Ha ocurrido un error con el reporte'
+                });
+                alertPopup.then(function(res) {
+                    $state.go('app.createReport');
+                });
           });
     }
     
@@ -197,7 +210,7 @@ angular.module('reportModule')
                         template: 'No se pudo reportar el caso.'
                     });
                     alertPopup.then(function(res) {
-                        $state.go('app.home');
+                        $state.go('app.createReport');
                     });
           });
     }
