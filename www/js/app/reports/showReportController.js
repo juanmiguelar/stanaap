@@ -2,9 +2,10 @@ angular.module('showReportModule', ['ngStorage'])
 
 .controller('showReportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
    
-    mostrarReportes($http, $scope, $ionicPopup, $state, $localStorage);
-   
-     
+
+   $scope.showReport = function(){
+       mostrarReportes($http, $scope, $ionicPopup, $state);
+   }
         
     function mostrarReportes($http, $scope, $ionicPopup, $state, $localStorage) {
     
