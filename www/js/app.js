@@ -216,7 +216,9 @@ $scope.pathForImage = function(image) {
     return '';
   } else {
     return cordova.file.dataDirectory + image;
-  }
+  
+
+git ass}
 };
 
 
