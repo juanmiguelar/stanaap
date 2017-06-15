@@ -1,4 +1,4 @@
-angular.module('reportModule', ['ngStorage'])
+angular.module('reportModule', ['ngStorage', 'cordovaGeolocation'])
 
 
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
