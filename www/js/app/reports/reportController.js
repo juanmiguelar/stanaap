@@ -88,6 +88,13 @@ angular.module('reportModule', ['ngStorage'])
         // Not always an error, maybe cancel was pressed...
       })
     }
+    
+    $scope.pathForImage = function(image) {
+  if (image === null) {
+    return '';
+  } else {
+    return cordova.file.dataDirectory + image;
+  }
 
     // version recien subida
     
