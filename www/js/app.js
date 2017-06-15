@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // Esto es un conflicto con aleclearasdfsdx
-=======
->>>>>>> b456ca59924fbbb604bd922a0c937a8056b6f838
 
 angular.module('starter', ['ionic',  'loginModule','registerModule', 
               'reportModule', 'mapModule', 'showReportModule',
@@ -127,13 +124,5 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
-<<<<<<< HEAD
 
 });
-=======
->>>>>>> b456ca59924fbbb604bd922a0c937a8056b6f838
-
-});
-
-
-
