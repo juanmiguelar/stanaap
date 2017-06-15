@@ -30,9 +30,5 @@
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.3" />
     <plugin name="cordova-plugin-filepath" spec="~1.0.2" />
     <plugin name="cordova-plugin-actionsheet" spec="~2.3.3" />
-<<<<<<< HEAD
     <plugin name="cordova-plugin-camera" spec="~2.4.1" />
-=======
-
->>>>>>> b456ca59924fbbb604bd922a0c937a8056b6f838
 </widget>
