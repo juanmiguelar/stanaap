@@ -1,13 +1,13 @@
-angular.module('showReportModule', ['ngStorage'])
+angular.module('showReportModule', [])
 
-.controller('showReportController', function($http, $scope, $ionicPopup, $state) {
+.controller('showReportController', function($http, $scope) {
    
 
    $scope.showReport = function(){
-       mostrarReportes($http, $scope, $ionicPopup, $state);
+       mostrarReportes($http, $scope);
    }
         
-    function mostrarReportes($http, $scope, $ionicPopup, $state) {
+    function mostrarReportes($http, $scope) {
     
         // Trae la información de los reportes(Adopción y maltrato) con la direccion
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';

@@ -39,7 +39,7 @@ describe('Prueba Reporte', function() {
                 //Se prueba que el servicio POST responda
                 scope.showReport();
                 // $httpBackend.expectPOST('https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php')
-                // .respond(200, {method:'show', email : "alex@gmail", datos: true});
+                // .respond(200, {method:'show', ID : "12", datos: true});
               
                 // $httpBackend.flush();
                 // expect(scope.successCallback).toEqual(true);
