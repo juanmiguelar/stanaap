@@ -1,6 +1,8 @@
+
 angular.module('starter', ['ionic',  'loginModule','registerModule', 
               'reportModule', 'mapModule', 'showReportModule',
               'ngStorage','ngCordova' ])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,6 +40,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
         }
       }
     })
+  
     
    .state('app.home', {
       url: '/home', 
@@ -120,6 +123,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
-})
+
+});
+
 
 
