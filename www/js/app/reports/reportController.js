@@ -1,4 +1,4 @@
-angular.module('reportModule', ['ngStorage', 'cordovaGeolocation'])
+angular.module('reportModule')
 
 
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
@@ -6,7 +6,7 @@ angular.module('reportModule', ['ngStorage', 'cordovaGeolocation'])
     $cordovaActionSheet, $cordovaGeolocation) {
     ///SCOPES DE CASOS DE MALTRATO O ABANDONO
     $scope.ubicacionMaltrato = function() {
-        obtenerUbicacion($localStorage);
+        obtenerUbicacion($localStorage,$cordovaGeolocation);
         insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
     }
 
