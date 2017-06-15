@@ -97,6 +97,30 @@ angular.module('reportModule', ['ngStorage'])
   }
 }
 
+
+$scope.uploadImage = function() {
+  // Destination URL
+  var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
+ 
+  // File for Upload
+  var targetPath = $scope.pathForImage($scope.image);
+ 
+  // File name only
+  var filename = $scope.image;
+ 
+  var options = {
+    fileKey: "file",
+    fileName: filename,
+    chunkedMode: false,
+    mimeType: "multipart/form-data",
+    params : {'fileName': filename}
+  };
+ 
+  $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+    $scope.showAlert('Success', 'Image upload finished.');
+  });
+}
+
     // version recien subida
     
     $scope.ubicacionMaltrato = function() {
