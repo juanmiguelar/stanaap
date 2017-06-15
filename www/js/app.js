@@ -1,4 +1,4 @@
-// Esto es un conflicto con alex
+// Esto es un conflicto con aleclearasdfsdx
 
 angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
 
