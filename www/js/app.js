@@ -1,7 +1,4 @@
-// Esto es un conflicto con alex
-
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
-
+angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova' ,'cordovaGeolocation'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -120,11 +117,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
         }
       }
     });
-    
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
-
 })
 
 
