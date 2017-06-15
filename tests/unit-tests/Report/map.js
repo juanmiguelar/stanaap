@@ -3,13 +3,10 @@ var arrayPos = [];
 angular.module('mapModule', [])
 
 .controller('MapCtrl', function($http,$scope, $state){
-  
+    $scope.data = {};
     $scope.mostrarReports = function(){
-       
-    mostrarReportes($http, $scope, $state);  
-     
+      mostrarReportes($http, $scope, $state);
     }
-   
 })
 
 // Cargando el array del servidor
@@ -20,18 +17,20 @@ function mostrarReportes($http, $scope, $state) {
     
         $http.post(link, {
             method: 'show',
-            email: $scope.email
+            email: $scope.CORREO_USUARIO
         }).then(function successCallback(response) {
+            $scope.arrayCasos = response.data;
             $scope.successCallback = true;
-            // initMap($scope);
+            console.log(response.data);
+            
+            //initMap($scope,$localStorage);
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
           });
     }
-// 
   
-function initMap($scope) {
+function initMap($scope, $localStorage) {
   var uluru = {lat: 10.087, lng: -84.47};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
@@ -57,22 +56,25 @@ function initMap($scope) {
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              contentString = '<div class="list card">' +
-      '<div class="item item-avatar">' +
-        /* '<img src="img/avatar.jpg"> ' + */
+              $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
+              contentString = 
+        '<div class="list card">' +
+          '<div class="item item-avatar">' +
+          /* '<img src="img/avatar.jpg"> ' + */
           '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
-         '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
-        '</div>'+
-      
-        '<div class="item item-image">' +
-          /*'<img src="img/cover.jpg">' +*/
-        '</div>' +
-      
-       '<a class="item item-icon-left assertive" href="#">' +
+          '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
+          '</div>'+
+        
+          '<div class="item item-image">' +
+            /*'<img src="img/cover.jpg">' +*/
+          '</div>' +
+        
+          '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
-         'Ver Detalles'+
-        '</a>'+
+          'Ver Detalles'+
+          '</a>'+
         '</div>';
+        
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }
