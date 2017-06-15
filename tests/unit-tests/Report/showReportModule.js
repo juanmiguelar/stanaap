@@ -1,1 +1,0 @@
-angular.module('showReportModule', ['ngStorage'])

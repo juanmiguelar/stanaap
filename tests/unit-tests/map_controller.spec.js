@@ -1,4 +1,4 @@
-describe('Prueba Reporte', function() {
+describe('Prueba Mapa', function() {
     
     beforeEach(function () {
         module('mapModule');
@@ -9,7 +9,7 @@ describe('Prueba Reporte', function() {
     state = jasmine.createSpyObj('$state spy', ['go']);
   
     
-    describe('Pruebas mostrar ', function (){
+    describe('controlador map ', function (){
        
          
         beforeEach(inject(function($controller, $rootScope, $injector, _$http_,_$httpBackend_){
@@ -39,7 +39,7 @@ describe('Prueba Reporte', function() {
                 //Se prueba que el servicio POST responda
                 scope.mostrarReports();
                 $httpBackend.expectPOST('https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php')
-                .respond(200, {method:'show', email : "pedro@gmail", datos: true});
+                .respond(200, {method:'show', CORREO_USUARIO : "alex@gmail"});
               
                 $httpBackend.flush();
                 expect(scope.successCallback).toEqual(true);
