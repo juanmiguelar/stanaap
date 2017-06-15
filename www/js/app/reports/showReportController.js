@@ -2,11 +2,11 @@ angular.module('showReportModule', ['ngStorage'])
 
 .controller('showReportController', function($http, $scope, $ionicPopup, $state, $localStorage) {
    
-    mostrarReportes($http, $scope, $ionicPopup, $state);
+    mostrarReportes($http, $scope, $ionicPopup, $state, $localStorage);
    
      
         
-    function mostrarReportes($http, $scope, $ionicPopup, $state) {
+    function mostrarReportes($http, $scope, $ionicPopup, $state, $localStorage) {
     
         // Trae la información de los reportes(Adopción y maltrato) con la direccion
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
@@ -16,8 +16,9 @@ angular.module('showReportModule', ['ngStorage'])
             id: $localStorage.ID
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
-            var location = $scope.arrayCasos[0].LATITUD + ',' + $scope.arrayCasos[0].LONGITUD;
-            $scope.ubicacion = location;
+            $localStorage.LATITUDDESTINO = $scope.arrayCasos[0].LATITUD; 
+            $localStorage.LONGITUDDESTINO = $scope.arrayCasos[0].LONGITUD;
+            
 
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
@@ -26,5 +27,8 @@ angular.module('showReportModule', ['ngStorage'])
          
     } 
 });
+
+
+
 
 
