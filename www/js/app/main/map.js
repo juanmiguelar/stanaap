@@ -53,22 +53,24 @@ function initMap($scope, $localStorage) {
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
-              contentString = '<div class="list card">' +
-      '<div class="item item-avatar">' +
-        /* '<img src="img/avatar.jpg"> ' + */
+              contentString = 
+        '<div class="list card">' +
+          '<div class="item item-avatar">' +
+          /* '<img src="img/avatar.jpg"> ' + */
           '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
-         '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
-        '</div>'+
-      
-        '<div class="item item-image">' +
-          /*'<img src="img/cover.jpg">' +*/
-        '</div>' +
-      
-       '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
+          '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
+          '</div>'+
+        
+          '<div class="item item-image">' +
+            /*'<img src="img/cover.jpg">' +*/
+          '</div>' +
+        
+          '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
-         'Ver Detalles'+
-        '</a>'+
+          'Ver Detalles'+
+          '</a>'+
         '</div>';
+        
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }

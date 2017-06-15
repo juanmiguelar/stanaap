@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 // Esto es un conflicto con aleclearasdfsdx
+=======
+>>>>>>> b456ca59924fbbb604bd922a0c937a8056b6f838
 
-angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 
+              'reportModule', 'mapModule', 'showReportModule',
+              'ngStorage','ngCordova' ])
 
 
 .run(function($ionicPlatform) {
@@ -20,7 +25,6 @@ angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModul
   });
 })
 
-//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -121,13 +125,15 @@ angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModul
         }
       }
     });
-    
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
+<<<<<<< HEAD
 
 });
+=======
+>>>>>>> b456ca59924fbbb604bd922a0c937a8056b6f838
 
+});
 
 
 
