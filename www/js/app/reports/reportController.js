@@ -95,8 +95,8 @@ angular.module('reportModule', ['ngStorage'])
 
 function obtenerUbicacion($localStorage, $cordovaGeolocation) {
     var posOptions = {
-        timeout: 10000,
-        enableHighAccuracy: false
+        timeout: 15000,
+        enableHighAccuracy: true
     };
     
     $cordovaGeolocation

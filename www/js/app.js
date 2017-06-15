@@ -19,7 +19,6 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
   });
 })
 
-//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
