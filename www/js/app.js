@@ -1,6 +1,6 @@
 // Esto es un conflicto con alex
 
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
+angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
 
 
 .run(function($ionicPlatform) {
@@ -40,6 +40,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
         }
       }
     })
+  
     
    .state('app.home', {
       url: '/home', 
