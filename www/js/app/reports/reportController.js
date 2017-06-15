@@ -52,7 +52,7 @@ angular.module('reportModule', ['ngStorage', 'cordovaGeolocation'])
     ///SCOPES DE CASOS DE ADOPCION
 
     $scope.ubicacionAdopcion = function() {
-        obtenerUbicacion($localStorage);
+        obtenerUbicacion($localStorage, $cordovaGeolocation);
         insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
     }
 
