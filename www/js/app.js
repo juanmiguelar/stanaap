@@ -1,4 +1,6 @@
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova' ,'cordovaGeolocation'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 
+              'reportModule', 'mapModule', 'showReportModule',
+              'ngStorage','ngCordova' ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

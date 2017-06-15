@@ -1,1 +1,1 @@
-angular.module('reportModule', ['ngStorage','cordovaGeolocation']);
+angular.module('reportModule', ['ngStorage']);
