@@ -95,6 +95,7 @@ angular.module('reportModule', ['ngStorage'])
   } else {
     return cordova.file.dataDirectory + image;
   }
+}
 
     // version recien subida
     
