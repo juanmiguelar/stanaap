@@ -1,6 +1,7 @@
-// Esto es un conflicto con alex
 
-angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 
+              'reportModule', 'mapModule', 'showReportModule',
+              'ngStorage','ngCordova' ])
 
 
 .run(function($ionicPlatform) {
@@ -20,7 +21,6 @@ angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModul
   });
 })
 
-//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -121,12 +121,10 @@ angular.module('starter', ['ionic', 'loginModule','registerModule', 'reportModul
         }
       }
     });
-    
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
-});
 
+});
 
 
 
