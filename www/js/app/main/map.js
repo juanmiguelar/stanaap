@@ -5,7 +5,15 @@ angular.module('mapModule', ['ngStorage'])
 .controller('MapCtrl', function($http,$scope, $state, $localStorage, $location){
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage);  
+
+$scope.go = function ( path ) {
+  $location.path( path );
+};
+  
 })
+
+
+
 
 // Cargando el array del servidor
 function mostrarReportes($http, $scope, $state,$localStorage) {
@@ -18,7 +26,7 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
             $scope.arrayCasos = response.data;
-            initMap($scope,$localStorage, $location);
+            initMap($scope,$localStorage);
           }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -26,7 +34,7 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
     }
 // 
   
-function initMap($scope, $localStorage, $location) {
+function initMap($scope, $localStorage) {
   var uluru = {lat: 10.087, lng: -84.47};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
@@ -65,7 +73,7 @@ function initMap($scope, $localStorage, $location) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" ng-click="go(/#/app/showReportMaltratoAbandono)">' +
+          '<a class="item item-icon-left assertive" ng-click="go('/#/app/showReportMaltratoAbandono')>' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</a>'+
@@ -76,11 +84,6 @@ function initMap($scope, $localStorage, $location) {
             }
         })(marker, i));
     }
-    
-    $scope.go = function ( path ) {
-  $location.path( path );
-};
-
 }
 
 
