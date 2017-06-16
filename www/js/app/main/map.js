@@ -65,10 +65,10 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<button class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono">' +
+          '<a class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
-          '</button>'+
+          '</a>'+
         '</div>';
         
               infowindow.setContent(contentString);
