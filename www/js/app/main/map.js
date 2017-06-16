@@ -7,8 +7,8 @@ angular.module('mapModule', ['ngStorage'])
     mostrarReportes($http, $scope, $state,$localStorage); 
     
     
-    $scope.go = function ($state) {
-  $state.go('app.showReportMaltratoAbandono');
+    $scope.go = function () {
+   $location.path('#/app/showReportMaltratoAbandono');
     };
 });
 
