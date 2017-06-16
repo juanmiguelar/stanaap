@@ -2,13 +2,14 @@ var arrayPos = [];
 
 angular.module('mapModule', ['ngStorage'])
 
-.controller('MapCtrl', function($http,$scope, $state, $localStorage){
+.controller('MapCtrl', function($http,$scope, $state, $localStorage, $location){
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
+    
     $scope.go = function ( path ) {
   $location.path( path );
 };
-})
+});
 
 
 // Cargando el array del servidor
