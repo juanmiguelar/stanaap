@@ -5,9 +5,6 @@ angular.module('mapModule', ['ngStorage'])
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
-    $scope.go = function ( path ) {
-  $location.path( path );
-};
 })
 
 
@@ -68,7 +65,7 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<button class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono" >' +
+          '<button class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</button>'+
