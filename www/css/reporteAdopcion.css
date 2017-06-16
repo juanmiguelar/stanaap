@@ -136,3 +136,9 @@ height: 16vh;
     display: block;
     margin-top: -1.5vh;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
