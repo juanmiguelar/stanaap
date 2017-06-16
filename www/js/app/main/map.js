@@ -6,8 +6,8 @@ angular.module('mapModule', ['ngStorage'])
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
     
-    $scope.go = function ( path ) {
-  $location.path( path );
+    $scope.go = function () {
+    $state.go = ("app.showReportMaltratoAbandono");
 };
 });
 
@@ -70,7 +70,7 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<button class="item item-icon-left assertive" ng-click="go("/#/app/showReportMaltratoAbandono")">' +
+          '<button class="item item-icon-left assertive" ng-click= '+ go() +' >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</button>'+
