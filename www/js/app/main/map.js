@@ -4,8 +4,12 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state,$localStorage);  
+    mostrarReportes($http, $scope, $state,$localStorage); 
+    $scope.go = function ( path ) {
+  $location.path( path );
+};
 })
+
 
 // Cargando el array del servidor
 function mostrarReportes($http, $scope, $state,$localStorage) {
@@ -65,10 +69,10 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
+          '<button class="item item-icon-left assertive" ng-click="go("/#/app/showReportMaltratoAbandono")">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
-          '</a>'+
+          '</button>'+
         '</div>';
         
               infowindow.setContent(contentString);
@@ -77,6 +81,7 @@ function initMap($scope, $localStorage) {
         })(marker, i));
     }
 }
+
 
 
 
