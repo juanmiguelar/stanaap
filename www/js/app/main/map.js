@@ -65,7 +65,7 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
+          '<a class="item item-icon-left assertive" go-click="/#/app/showReportMaltratoAbandono">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</a>'+
