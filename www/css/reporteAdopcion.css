@@ -16,6 +16,7 @@
     color: white;
 }
 .buttonHolder {
+    margin-top: -2vh;
         text-align: center; 
 }
 .textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
@@ -128,6 +129,8 @@ height: 16vh;
 
 
 .img-upload {
-    width: 4vh;
-    height: 4vh;
+    width: 5vh;
+    height: 5vh;
+    text-align: center;
+    margin-top: -1.5vh;
 }

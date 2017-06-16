@@ -117,7 +117,7 @@ $scope.uploadImage = function() {
   };
  
   $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-    $scope.showAlert('Success', 'Image upload finished.');
+    $scope.showAlert('Exito!', 'Imagen subida.');
   });
 }
 
