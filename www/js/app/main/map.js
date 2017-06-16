@@ -5,7 +5,12 @@ angular.module('mapModule', ['ngStorage'])
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
-})
+    
+    
+    $scope.go = function ($state) {
+  $state.go('app.showReportMaltratoAbandono');
+    };
+});
 
 
 // Cargando el array del servidor
@@ -35,6 +40,7 @@ function initMap($scope, $localStorage) {
   });
  
         /*ACA lo del array*/
+
     var arrayUbicaciones = $scope.arrayCasos;
     var count = Object.keys(arrayUbicaciones).length;
     var infowindow = new google.maps.InfoWindow();
@@ -65,10 +71,10 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono">' +
+          '<button class="item item-icon-left assertive" ng-click="go()" >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
-          '</a>'+
+          '</button>'+
         '</div>';
         
               infowindow.setContent(contentString);
