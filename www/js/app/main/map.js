@@ -2,14 +2,13 @@ var arrayPos = [];
 
 angular.module('mapModule', ['ngStorage'])
 
-.controller('MapCtrl', function($http,$scope, $state, $localStorage, $location){
+.controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
-    
-    $scope.go = function () {
-    $state.go = ("app.showReportMaltratoAbandono");
+    $scope.go = function ( path ) {
+  $location.path( path );
 };
-});
+})
 
 
 // Cargando el array del servidor
@@ -39,7 +38,6 @@ function initMap($scope, $localStorage) {
   });
  
         /*ACA lo del array*/
-    // var arrayUbicaciones = [{lat: 10.087, long: -84.47}, {lat: 10.0666667, long: -84.3166667}];
     var arrayUbicaciones = $scope.arrayCasos;
     var count = Object.keys(arrayUbicaciones).length;
     var infowindow = new google.maps.InfoWindow();
@@ -70,7 +68,7 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<button class="item item-icon-left assertive" ng-click= '+ go() +' >' +
+          '<button class="item item-icon-left assertive" ng-href= "/#/app/showReportMaltratoAbandono" >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</button>'+
