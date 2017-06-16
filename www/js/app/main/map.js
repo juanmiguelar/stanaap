@@ -73,10 +73,10 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" ng-click="go(/#/app/showReportMaltratoAbandono)">' +
+          '<button class="item item-icon-left assertive" ng-click="go(/#/app/showReportMaltratoAbandono)">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
-          '</a>'+
+          '</button>'+
         '</div>';
         
               infowindow.setContent(contentString);
