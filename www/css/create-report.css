@@ -123,3 +123,9 @@ height: 16vh;
 .div-button {
     text-align: center;
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

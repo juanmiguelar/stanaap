@@ -2,189 +2,216 @@ angular.module('reportModule', ['ngStorage'])
 
 
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
-                                        $cordovaCamera, $cordovaFile, $cordovaFileTransfer,
-                                        $cordovaDevice, $cordovaActionSheet, $cordovaGeolocation) {
+    $cordovaCamera, $cordovaFile, $cordovaFileTransfer,
+    $cordovaDevice, $cordovaActionSheet, $cordovaGeolocation) {
     ///SCOPES DE CASOS DE MALTRATO O ABANDONO
-    
-    
-//GALERIA
 
-    // Version recien subida
-
-    $scope.image = null;
-     
-    $scope.showAlert = function(title, msg) {
+    if($localStorage.CORREO_USUARIO == null){
         var alertPopup = $ionicPopup.alert({
-          title: title,
-          template: msg
+            title: 'Inicie seción',
+            template: 'Debe iniciar seción para reportar un caso'
         });
-      };
-    $scope.loadImage = function() {
-      var options = {
-        title: 'Seleccionar Fuente de la Imagen',
-        buttonLabels: ['Usar Galería', 'Usar Cámara'],
-        addCancelButtonWithLabel: 'Cancelar',
-        androidEnableCancelButton : true,
-      };
-      $cordovaActionSheet.show(options).then(function(btnIndex) {
-        var type = null;
-        if (btnIndex === 1) {
-          type = Camera.PictureSourceType.PHOTOLIBRARY;
-        } else if (btnIndex === 2) {
-          type = Camera.PictureSourceType.CAMERA;
-        }
-        if (type !== null) {
-          $scope.selectPicture(type);
-        }
-      });
+        alertPopup.then(function(res) {
+            $state.go('app.login');
+        });
+    }else{
+	    $scope.image = null;
+
+	    $scope.showAlert = function(title, msg) {
+	        var alertPopup = $ionicPopup.alert({
+	            title: title,
+	            template: msg
+	        });
+	    }
+	    $scope.loadImage = function() {
+	        var options = {
+	            title: 'Seleccionar Fuente de la Imagen',
+	            buttonLabels: ['Usar Galería', 'Usar Cámara'],
+	            addCancelButtonWithLabel: 'Cancelar',
+	            androidEnableCancelButton: true,
+	        };
+	        $cordovaActionSheet.show(options).then(function(btnIndex) {
+	            var type = null;
+	            if (btnIndex === 1) {
+	                type = Camera.PictureSourceType.PHOTOLIBRARY;
+	            }
+	            else if (btnIndex === 2) {
+	                type = Camera.PictureSourceType.CAMERA;
+	            }
+	            if (type !== null) {
+	                $scope.selectPicture(type);
+	            }
+	        });
+	    }
+	    $scope.selectPicture = function(sourceType) {
+	        var options = {
+	            quality: 100,
+	            destinationType: Camera.DestinationType.FILE_URI,
+	            sourceType: sourceType,
+	            saveToPhotoAlbum: false
+	        };
+
+	        $cordovaCamera.getPicture(options).then(function(imagePath) {
+	                // Grab the file name of the photo in the temporary directory
+	                var currentName = imagePath.replace(/^.*[\\\/]/, '');
+
+	                //Create a new name for the photo
+	                var d = new Date(),
+	                    n = d.getTime(),
+	                    newFileName = n + ".jpg";
+
+	                // If you are trying to load image from the gallery on Android we need special treatment!
+	                if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
+	                    window.FilePath.resolveNativePath(imagePath, function(entry) {
+	                        window.resolveLocalFileSystemURL(entry, success, fail);
+
+	                        function fail(e) {
+	                            console.error('Error: ', e);
+	                        }
+
+	                        function success(fileEntry) {
+	                            var namePath = fileEntry.nativeURL.substr(0, fileEntry.nativeURL.lastIndexOf('/') + 1);
+	                            // Only copy because of access rights
+	                            $cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
+	                                $scope.image = newFileName;
+	                            }, function(error) {
+	                                $scope.showAlert('Error', error.exception);
+	                            });
+	                        };
+	                    });
+	                }
+	                else {
+	                    var namePath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+	                    // Move the file to permanent storage
+	                    $cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
+	                        $scope.image = newFileName;
+	                    }, function(error) {
+	                        $scope.showAlert('Error', error.exception);
+	                    });
+	                }
+	            },
+	            function(err) {
+	                // Not always an error, maybe cancel was pressed...
+	            })
+	    }
+	    $scope.pathForImage = function(image) {
+	        if (image === null) {
+	            return '';
+	        }
+	        else {
+	            return cordova.file.dataDirectory + image;
+	        }
+	    }
+	    $scope.uploadImage = function() {
+	        // Destination URL
+	        var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
+
+	        // File for Upload
+	        var targetPath = $scope.pathForImage($scope.image);
+
+	        // File name only
+	        var filename = $scope.image;
+
+	        var options = {
+	            fileKey: "file",
+	            fileName: filename,
+	            chunkedMode: false,
+	            mimeType: "multipart/form-data",
+	            params: {
+	                'fileName': filename
+	            }
+	        };
+
+	        $cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+	            $scope.showAlert('Exito!', 'Imagen subida.');
+	        });
+	    }
+	    
+	    ///SCOPES DE CASOS DE MALTRATO
+	    $scope.ubicacionMaltrato = function() {
+	        obtenerUbicacion($localStorage, $cordovaGeolocation);
+	        insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+	    }
+	    
+	    $scope.guardarInfoReporteGeneralMaltrato = function() {
+	            if ($scope.titulo == null || $scope.descripcion == null || $scope.tipo == null) {
+	                var alertPopup = $ionicPopup.alert({
+	                    title: 'Datos incompletos',
+	                    template: 'Debe ingresar todos los datos del formulario'
+	                });
+	                alertPopup.then(function(res) {
+	                    $state.go('app.createReportMaltratoAbandono');
+	                });
+	            }
+	            else {
+	                $localStorage.tipoMaltrato = $scope.tipo;
+	                $localStorage.tituloMaltrato = $scope.titulo;
+	                $localStorage.descripcionMaltrato = $scope.descripcion;
+	                $state.go('app.animalMaltratoAbandonoInfo');
+	            }
+	    }
+	    
+	    $scope.guardarInfoReporteMaltrato = function() {
+	            if ($scope.especie == null) {
+	                var alertPopup = $ionicPopup.alert({
+	                    title: 'Datos incompletos',
+	                    template: 'Debe ingresar la especie'
+	                });
+	                alertPopup.then(function(res) {
+	                    $state.go('app.animalMaltratoAbandonoInfo');
+	                });
+	            }
+	            else {
+	    
+	                insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+	                insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+	    
+	                $state.go('app.home');
+	            }
+	    }
+	    
+	    ///SCOPES DE CASOS DE ADOPCION
+	    
+	    $scope.ubicacionAdopcion = function() {
+	            obtenerUbicacion($localStorage, $cordovaGeolocation);
+	            insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+	    }
+	    $scope.guardarInfoReporteGeneralAdopcion = function() {
+	            if ($scope.titulo == null || $scope.descripcion == null) {
+	                var alertPopup = $ionicPopup.alert({
+	                    title: 'Datos incompletos',
+	                    template: 'Debe ingresar todos los datos del formulario'
+	                });
+	                alertPopup.then(function(res) {
+	                    $state.go('app.createReportAdopcion');
+	                });
+	            }
+	            else {
+	                $localStorage.titulo = $scope.titulo;
+	                $localStorage.descripcion = $scope.descripcion;
+	                $state.go('app.animalAdopcionInfo');
+	            }
+	    }
+	    
+	    $scope.guardarInfoReporteAdopcion = function() {
+	            if ($scope.tamanno == null || $scope.especie == null) {
+	                var alertPopup = $ionicPopup.alert({
+	                    title: 'Datos incompletos',
+	                    template: 'Debe ingresar todos los datos del formulario'
+	                });
+	                alertPopup.then(function(res) {
+	                    $state.go('app.animalAdopcionInfo');
+	                });
+	            }
+	            else {
+	    
+	                insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+	                insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+	                $state.go('app.home');
+	            }
+	    }  
+	     
     }
-    $scope.selectPicture = function(sourceType) {
-      var options = {
-        quality: 100,
-        destinationType: Camera.DestinationType.FILE_URI,
-        sourceType: sourceType,
-        saveToPhotoAlbum: false
-      };
-     
-      $cordovaCamera.getPicture(options).then(function(imagePath) {
-        // Grab the file name of the photo in the temporary directory
-        var currentName = imagePath.replace(/^.*[\\\/]/, '');
-     
-        //Create a new name for the photo
-        var d = new Date(),
-        n = d.getTime(),
-        newFileName =  n + ".jpg";
-     
-        // If you are trying to load image from the gallery on Android we need special treatment!
-        if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-          window.FilePath.resolveNativePath(imagePath, function(entry) {
-            window.resolveLocalFileSystemURL(entry, success, fail);
-            function fail(e) {
-              console.error('Error: ', e);
-            }
-     
-            function success(fileEntry) {
-              var namePath = fileEntry.nativeURL.substr(0, fileEntry.nativeURL.lastIndexOf('/') + 1);
-              // Only copy because of access rights
-              $cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success){
-                $scope.image = newFileName;
-              }, function(error){
-                $scope.showAlert('Error', error.exception);
-              });
-            };
-          }
-        );
-        } else {
-          var namePath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-          // Move the file to permanent storage
-          $cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success){
-            $scope.image = newFileName;
-          }, function(error){
-            $scope.showAlert('Error', error.exception);
-          });
-        }
-      },
-      function(err){
-        // Not always an error, maybe cancel was pressed...
-      })
-    }
-    
-    $scope.pathForImage = function(image) {
-  if (image === null) {
-    return '';
-  } else {
-    return cordova.file.dataDirectory + image;
-  }
-}
-
-    // version recien subida
-    
-    $scope.ubicacionMaltrato = function() {
-        obtenerUbicacion($localStorage, $cordovaGeolocation);
-        insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-    }
-
-    $scope.guardarInfoReporteGeneralMaltrato = function() {
-        if ($scope.titulo == null || $scope.descripcion == null || $scope.tipo == null) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Datos incompletos',
-                template: 'Debe ingresar todos los datos del formulario'
-            });
-            alertPopup.then(function(res) {
-                $state.go('app.createReportMaltratoAbandono');
-            });
-        }
-        else {
-            $localStorage.tipoMaltrato = $scope.tipo;
-            $localStorage.tituloMaltrato = $scope.titulo;
-            $localStorage.descripcionMaltrato = $scope.descripcion;
-            $state.go('app.animalMaltratoAbandonoInfo');
-        }
-
-    }
-
-    $scope.guardarInfoReporteMaltrato = function() {
-        if ($scope.especie == null) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Datos incompletos',
-                template: 'Debe ingresar la especie'
-            });
-            alertPopup.then(function(res) {
-                $state.go('app.animalMaltratoAbandonoInfo');
-            });
-        }
-        else {
-
-            insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-            insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-
-            $state.go('app.home');
-        }
-
-    }
-
-    ///SCOPES DE CASOS DE ADOPCION
-
-    $scope.ubicacionAdopcion = function() {
-        obtenerUbicacion($localStorage, $cordovaGeolocation);
-        insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-    }
-
-    $scope.guardarInfoReporteGeneralAdopcion = function() {
-        if ($scope.titulo == null || $scope.descripcion == null) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Datos incompletos',
-                template: 'Debe ingresar todos los datos del formulario'
-            });
-            alertPopup.then(function(res) {
-                $state.go('app.createReportAdopcion');
-            });
-        }
-        else {
-            $localStorage.titulo = $scope.titulo;
-            $localStorage.descripcion = $scope.descripcion;
-            $state.go('app.animalAdopcionInfo');
-        }
-    }
-
-    $scope.guardarInfoReporteAdopcion = function() {
-        if ($scope.tamanno == null || $scope.especie == null) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Datos incompletos',
-                template: 'Debe ingresar todos los datos del formulario'
-            });
-            alertPopup.then(function(res) {
-                $state.go('app.animalAdopcionInfo');
-            });
-        }
-        else {
-
-            insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-            insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-            $state.go('app.home');
-        }
-
-    };
 });
 
 function obtenerUbicacion($localStorage, $cordovaGeolocation) {
@@ -192,16 +219,16 @@ function obtenerUbicacion($localStorage, $cordovaGeolocation) {
         timeout: 15000,
         enableHighAccuracy: true
     };
-    
+
     $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function(position) {
             var lat = position.coords.latitude
             var long = position.coords.longitude
-            
+
             $localStorage.latitud = lat;
             $localStorage.longitud = long;
-            
+
         }, function(err) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Ha ocurrido un error',
@@ -319,7 +346,6 @@ function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $loc
         tipo: $localStorage.tipoMaltrato
     }).then(function successCallback(response) {
         $scope.response = response.data;
-
         if ($scope.response == 1) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Reportar caso',

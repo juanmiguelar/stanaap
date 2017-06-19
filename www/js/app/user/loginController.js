@@ -61,7 +61,7 @@ function validarUsuario($http, $scope, $ionicPopup, $state, $localStorage) {
 
         if (result.data == 1) {
             $localStorage.CORREO_USUARIO = $scope.email;
-            $state.go('app.createReport');
+            $state.go('app.home');
         }
 
         if (result.data != 0 && result.data != 1) {
