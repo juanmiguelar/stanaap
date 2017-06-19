@@ -4,8 +4,14 @@ angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
     $scope.data = {};
-    mostrarReportes($http, $scope, $state,$localStorage);  
-})
+    mostrarReportes($http, $scope, $state,$localStorage); 
+    
+    
+//     $scope.go = function () {
+//   $location.path('#/app/showReportMaltratoAbandono');
+//     };
+ });
+
 
 // Cargando el array del servidor
 function mostrarReportes($http, $scope, $state,$localStorage) {
@@ -20,8 +26,6 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             $scope.arrayCasos = response.data;
             initMap($scope,$localStorage);
           }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
           });
     }
 // 
@@ -34,7 +38,7 @@ function initMap($scope, $localStorage) {
   });
  
         /*ACA lo del array*/
-    // var arrayUbicaciones = [{lat: 10.087, long: -84.47}, {lat: 10.0666667, long: -84.3166667}];
+
     var arrayUbicaciones = $scope.arrayCasos;
     var count = Object.keys(arrayUbicaciones).length;
     var infowindow = new google.maps.InfoWindow();
@@ -65,18 +69,18 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<a class="item item-icon-left assertive" href="/#/app/showReportMaltratoAbandono">' +
+          '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</a>'+
         '</div>';
-        
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }
         })(marker, i));
     }
 }
+
 
 
 
