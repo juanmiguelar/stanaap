@@ -3,6 +3,7 @@ var arrayPos = [];
 angular.module('mapModule', ['ngStorage'])
 
 .controller('MapCtrl', function($http,$scope, $state, $localStorage){
+
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage); 
     
@@ -23,8 +24,9 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             method: 'show',
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
-            $scope.arrayCasos = response.data;
-            initMap($scope,$localStorage);
+           $scope.arrayCasos = response.data
+           
+           initMap($scope,$localStorage);
           }, function errorCallback(response) {
           });
     }
