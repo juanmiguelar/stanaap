@@ -7,10 +7,10 @@ angular.module('mapModule', ['ngStorage'])
     mostrarReportes($http, $scope, $state,$localStorage); 
     
     
-    $scope.go = function () {
-   $location.path('#/app/showReportMaltratoAbandono');
-    };
-});
+//     $scope.go = function () {
+//   $location.path('#/app/showReportMaltratoAbandono');
+//     };
+ });
 
 
 // Cargando el array del servidor
@@ -26,8 +26,6 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             $scope.arrayCasos = response.data;
             initMap($scope,$localStorage);
           }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
           });
     }
 // 
@@ -71,12 +69,11 @@ function initMap($scope, $localStorage) {
             /*'<img src="img/cover.jpg">' +*/
           '</div>' +
         
-          '<button class="item item-icon-left assertive" ng-click="go()" >' +
+          '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
-          '</button>'+
+          '</a>'+
         '</div>';
-        
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }
