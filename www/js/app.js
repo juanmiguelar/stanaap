@@ -1,7 +1,7 @@
 // Esto es un conflicto con aleclearasdfsdx
 
 angular.module('starter', ['ionic',  'loginModule','registerModule', 
-              'reportModule', 'mapModule', 'showReportModule',
+              'reportModule', 'mapModule', 'showReportModule','logoutModule',
               'ngStorage','ngCordova' ])
 
 
@@ -59,6 +59,15 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
         'content':{
           templateUrl:'js/app/user/login.html',
           controller: 'loginController'
+        }
+      }
+    })
+    
+     .state('app.logout', {
+      url: '/logout', 
+      views:{
+        'content':{
+          controller: 'logoutController'
         }
       }
     })
@@ -123,6 +132,6 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('app/login');
+  $urlRouterProvider.otherwise('app/home');
 
 });
