@@ -9,7 +9,7 @@
     <author email="juanmiguelar09@gmail.com" href="http://example.com/">
       Juan Miguel Arias Mejias
     </author>
-    <icon src="/stanapp/www/img/res/appIcon.png" />
+    <icon src="/stanapp/resources/android/icon/icon.png" />
     <content src="index.html" />
     <access origin="*" />
     <preference name="webviewbounce" value="false" />
