@@ -20,6 +20,7 @@ module.exports = function(config) {
             '../../tests/unit-tests/User/registerController.js',
             '../../tests/unit-tests/User/loginController.js',
             '../../tests/unit-tests/Report/map.js',
+            '../../tests/unit-tests/Report/showReportController.js',
             'map_controller.spec.js'
     ],
 

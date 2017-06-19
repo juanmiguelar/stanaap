@@ -1,6 +1,8 @@
-// Esto es un conflicto con alex
+// Esto es un conflicto con aleclearasdfsdx
 
-angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModule', 'mapModule', 'showReportModule', 'ngStorage','ngCordova'])
+angular.module('starter', ['ionic',  'loginModule','registerModule', 
+              'reportModule', 'mapModule', 'showReportModule',
+              'ngStorage','ngCordova' ])
 
 
 .run(function($ionicPlatform) {
@@ -20,7 +22,6 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
   });
 })
 
-//comentario
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -40,6 +41,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
         }
       }
     })
+  
     
    .state('app.home', {
       url: '/home', 
@@ -120,11 +122,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule', 'reportModu
         }
       }
     });
-    
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('app/login');
 
-})
-
-
+});

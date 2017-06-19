@@ -1,23 +1,25 @@
-describe('Prueba Mapa', function() {
+describe('Prueba Reporte', function() {
     
     beforeEach(function () {
-        module('mapModule');
-        
+        module('showReportModule');
     });
-     var scope,state, $http, ctrl, $httpBackend;
+     var scope,ionicPopup,state, $http, ctrl, $httpBackend;
             
     state = jasmine.createSpyObj('$state spy', ['go']);
-  
+        
+    ionicPopup = jasmine.createSpyObj('$ionicPopup spy', ['alert']);
     
-    describe('controlador map ', function (){
+    
+    describe('Pruebas mostrar ', function (){
        
          
         beforeEach(inject(function($controller, $rootScope, $injector, _$http_,_$httpBackend_){
                 scope = $rootScope.$new();
-                ctrl = $controller('MapCtrl', {
+                ctrl = $controller('showReportController', {
                     $http:_$http_,
                     $httpBackend:_$httpBackend_,
                     $scope:scope,
+                    $ionicPopup:ionicPopup,
                     $state:state
                 });
             })
@@ -37,9 +39,9 @@ describe('Prueba Mapa', function() {
              
             it('debería de enviar una solicitud POST al Backend de Reportes para obtener datos', function() {
                 //Se prueba que el servicio POST responda
-                scope.mostrarReports();
+                scope.showReport();
                 $httpBackend.expectPOST('https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php')
-                .respond(200, {method:'show', CORREO_USUARIO : "alex@gmail"});
+                .respond(200, {method:'getID', ID : "12"});
               
                 $httpBackend.flush();
                 expect(scope.successCallback).toEqual(true);
