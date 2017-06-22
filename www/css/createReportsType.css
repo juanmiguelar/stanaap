@@ -130,3 +130,7 @@ height: 16vh;
     pointer-events: none;
     float: left;
 }
+
+.adopcion {
+    background-color: #1C7099;
+}
