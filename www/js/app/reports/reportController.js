@@ -171,12 +171,12 @@ angular.module('reportModule', ['ngStorage'])
 	    }
 	    
 	    ///SCOPES DE CASOS DE ADOPCION
-	    
 	    $scope.ubicacionAdopcion = function() {
 	            obtenerUbicacion($localStorage, $cordovaGeolocation);
 	            insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 	    }
-	    $scope.guardarInfoReporteGeneralAdopcion = function() {
+	    $scope.guardarInfoReporteGeneralAdopcion = function($scope) {
+	    	console.log($scope.titulo);
 	            if ($scope.titulo == null || $scope.descripcion == null) {
 	                var alertPopup = $ionicPopup.alert({
 	                    title: 'Datos incompletos',
