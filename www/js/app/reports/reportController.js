@@ -44,8 +44,6 @@ angular.module('reportModule', ['ngStorage'])
 				}
 			});
 			
-			// Subirla al servidor
-			$scope.uploadImage();
 		}
 		$scope.selectPicture = function(sourceType) {
 			var options = {
@@ -107,6 +105,7 @@ angular.module('reportModule', ['ngStorage'])
 			}
 		}
 		$scope.uploadImage = function() {
+			
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
@@ -128,8 +127,7 @@ angular.module('reportModule', ['ngStorage'])
 
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
 				if (result.data!=0) {
-					$localStorage.imagen = filename;
-					
+					$localStorage.imagen = filename;		
 				}else{
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
@@ -173,6 +171,7 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+				$scope.uploadImage();
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
 				$state.go('app.home');
@@ -215,6 +214,7 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+				$scope.uploadImage();
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
