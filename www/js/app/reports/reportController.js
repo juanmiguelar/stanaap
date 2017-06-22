@@ -177,7 +177,7 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-			//	$scope.uploadImage();
+				$scope.uploadImage();
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
 				$state.go('app.home');
@@ -220,7 +220,7 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-			//	$scope.uploadImage();
+				$scope.uploadImage();
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
