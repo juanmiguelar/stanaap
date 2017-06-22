@@ -104,7 +104,10 @@ angular.module('reportModule', ['ngStorage'])
 				return cordova.file.dataDirectory + image;
 			}
 		}
+		
 		$scope.uploadImage = function() {
+			
+			console.log("Soy upload image");
 			
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
@@ -126,9 +129,12 @@ angular.module('reportModule', ['ngStorage'])
 			};
 
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+				console.log("Soy upload image antes del if");
 				if (result.data!=0) {
+					console.log("Soy upload image TRUE");
 					$localStorage.imagen = filename;		
 				}else{
+					console.log("Soy upload image FALSE");
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
 			});
