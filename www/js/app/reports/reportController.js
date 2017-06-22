@@ -229,7 +229,7 @@ angular.module('reportModule', ['ngStorage'])
 	}
 });
 
-function obtenerUbicacion($localStorage, $cordovaGeolocation) {
+function obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup) {
 	var posOptions = {
 		timeout: 15000,
 		enableHighAccuracy: true
