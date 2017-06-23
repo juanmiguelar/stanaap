@@ -25,7 +25,6 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
            $scope.arrayCasos = response.data
-           
            initMap($scope,$localStorage);
           }, function errorCallback(response) {
           });
@@ -58,7 +57,14 @@ function initMap($scope, $localStorage) {
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-              $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
+              if(arrayUbicaciones[i].TIPO == "maltrato"){
+                $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
+                
+              }else{
+                $localStorage.ID = arrayUbicaciones[i].ID_ADOPCION; 
+                
+              }
+              $localStorage.TIPO = arrayUbicaciones[i].TIPO; 
               contentString = 
         '<div class="list card">' +
           '<div class="item item-avatar">' +

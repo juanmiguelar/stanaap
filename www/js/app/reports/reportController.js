@@ -4,6 +4,7 @@ angular.module('reportModule', ['ngStorage'])
 .controller('reportController', function($http, $scope, $ionicPopup, $state, $localStorage,
 	$cordovaCamera, $cordovaFile, $cordovaFileTransfer,
 	$cordovaDevice, $cordovaActionSheet, $cordovaGeolocation) {
+
 	///SCOPES DE CASOS DE MALTRATO O ABANDONO
 
 	if ($localStorage.CORREO_USUARIO == null) {
@@ -43,7 +44,7 @@ angular.module('reportModule', ['ngStorage'])
 					$scope.selectPicture(type);
 				}
 			});
-			
+
 		}
 		$scope.selectPicture = function(sourceType) {
 			var options = {
@@ -104,11 +105,10 @@ angular.module('reportModule', ['ngStorage'])
 				return cordova.file.dataDirectory + image;
 			}
 		}
+
 		
 		$scope.uploadImage = function() {
-			
-			console.log("Soy upload image");
-			
+		
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
@@ -137,12 +137,15 @@ angular.module('reportModule', ['ngStorage'])
 					console.log("Soy upload image FALSE");
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
+
 			});
 		}
 
 		///SCOPES DE CASOS DE MALTRATO
 		$scope.ubicacionMaltrato = function() {
-			obtenerUbicacion($localStorage, $cordovaGeolocation);
+
+			obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
+
 			insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 		}
 
@@ -178,6 +181,7 @@ angular.module('reportModule', ['ngStorage'])
 
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				$scope.uploadImage();
+
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
 				$state.go('app.home');
@@ -185,12 +189,15 @@ angular.module('reportModule', ['ngStorage'])
 		}
 
 		///SCOPES DE CASOS DE ADOPCION
-
 		$scope.ubicacionAdopcion = function() {
 			obtenerUbicacion($localStorage, $cordovaGeolocation);
 			insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 		}
+
+		
 		$scope.guardarInfoReporteGeneralAdopcion = function() {
+			
+
 			if ($scope.titulo == null || $scope.descripcion == null) {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Datos incompletos',
@@ -208,6 +215,7 @@ angular.module('reportModule', ['ngStorage'])
 		}
 
 		$scope.guardarInfoReporteAdopcion = function() {
+
 			if ($scope.tamanno == null || $scope.especie == null) {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Datos incompletos',
@@ -221,6 +229,7 @@ angular.module('reportModule', ['ngStorage'])
 
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$scope.uploadImage();
+
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
@@ -360,6 +369,7 @@ function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $loc
 		correo: $localStorage.CORREO_USUARIO,
 		tipo: $localStorage.tipoMaltrato,
 		imagen: $localStorage.imagen
+
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
 		if ($scope.response == 1) {
@@ -394,6 +404,7 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 		id_adopcion: $localStorage.ID_ADOPCION,
 		correo: $localStorage.CORREO_USUARIO,
 		imagen: $localStorage.imagen
+
 
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
