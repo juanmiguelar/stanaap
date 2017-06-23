@@ -4,26 +4,30 @@
     <ion-nav-buttons side="right">
        <a class="button button-icon ion-android-search" href="/#/app/filtroEspecie" ></a>
     </ion-nav-buttons>
-    <div class="list form">
-    <link href="css/createReportsType.css" rel="stylesheet">
-    <div class="titulo">
-      <h3> Elija una tipo de reporte </h3> 
-      </div>
- 
-      <div class="buttonHolder">
-      <button class="button button-large btn-registrarse" ng-click="ubicacionMaltrato()" >
-                <i class="icon ion-android-hand placeholder-icon"></i>
-         Maltrato 
-        </button>
+    <link href="css/filtroEspecie.css" rel="stylesheet">
+ <h2 class="titulo">Tipo de Reporte</h2>
+<ion-list class="listaEspecies">
+  <ion-item>
+    <ion-thumbnail item-start>
+      <img src="img/reportIcon.png">
+    </ion-thumbnail>
+    <div class="info">
+    <h2>Maltrato</h2>
+    <p>Realice un reporte de maltrato animal</p>
     </div>
-    
-     <div class="buttonHolder">
-      <button class="button button-large btn-registrarse adopcion" ng-click="ubicacionAdopcion()" >
-           <i class="icon ion-android-home placeholder-icon"></i>
-          Adopción
-        </button>
+   <button ion-button clear item-end class="botonVer ion-chevron-right" ng-click="ubicacionMaltrato()"></button>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail item-start>
+      <img src="img/home.png">
+    </ion-thumbnail>
+    <div class="info">
+    <h2>Adopción</h2>
+    <p>Realice un reporte de adopción animal</p>
     </div>
-    
+     <button ion-button clear item-end class="botonVer ion-chevron-right" ng-click="ubicacionAdopcion()"></button>
+  </ion-item>
+</ion-list>
   </ion-content>
 </ion-view>    
 
