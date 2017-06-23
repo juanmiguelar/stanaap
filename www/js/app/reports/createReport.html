@@ -1,4 +1,3 @@
-
 <ion-view cache-view="false" class="view" view-title="Stanapp">
     
     <ion-nav-buttons side="right">
@@ -7,7 +6,7 @@
     <link href="css/filtroEspecie.css" rel="stylesheet">
  <h2 class="titulo">Tipo de Reporte</h2>
 <ion-list class="listaEspecies">
-  <ion-item>
+  <ion-item ng-click="ubicacionMaltrato()">
     <ion-thumbnail item-start>
       <img src="img/reportIcon.png">
     </ion-thumbnail>
@@ -15,9 +14,9 @@
     <h2>Maltrato</h2>
     <p>Realice un reporte de maltrato animal</p>
     </div>
-   <button ion-button clear item-end class="botonVer ion-chevron-right" ng-click="ubicacionMaltrato()"></button>
+   <button ion-button clear item-end class="botonVer ion-chevron-right" ></button>
   </ion-item>
-  <ion-item>
+  <ion-item  ng-click="ubicacionAdopcion()">
     <ion-thumbnail item-start>
       <img src="img/home.png">
     </ion-thumbnail>
@@ -25,7 +24,7 @@
     <h2>Adopción</h2>
     <p>Realice un reporte de adopción animal</p>
     </div>
-     <button ion-button clear item-end class="botonVer ion-chevron-right" ng-click="ubicacionAdopcion()"></button>
+     <button ion-button clear item-end class="botonVer ion-chevron-right"></button>
   </ion-item>
 </ion-list>
   </ion-content>
