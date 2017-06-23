@@ -11,7 +11,8 @@ angular.module('showReportModule', ['ngStorage'])
             id: $localStorage.ID,
             tipo: $localStorage.TIPO
         }).then(function successCallback(response) {
-            $scope.arrayCasos = response.data;
+            $scope.arrayCasos = response.data
+            console.log(response.data);
           }, function errorCallback(response) {
             //En caso de que ocurra un error
           });
