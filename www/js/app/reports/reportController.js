@@ -129,12 +129,12 @@ angular.module('reportModule', ['ngStorage'])
 			};
 
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-				console.log("Soy upload image antes del if");
+				
 				if (result.data!=0) {
-					console.log("Soy upload image TRUE");
+					
 					$localStorage.imagen = filename;		
 				}else{
-					console.log("Soy upload image FALSE");
+					
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
 
