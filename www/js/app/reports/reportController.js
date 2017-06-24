@@ -77,6 +77,7 @@ angular.module('reportModule', ['ngStorage'])
 								// Only copy because of access rights
 								$cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
 									$scope.image = newFileName;
+									$localStorage.imagen = $scope.image;
 								}, function(error) {
 									$scope.showAlert('Error', error.exception);
 								});
@@ -88,6 +89,7 @@ angular.module('reportModule', ['ngStorage'])
 						// Move the file to permanent storage
 						$cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
 							$scope.image = newFileName;
+							$localStorage.imagen = $scope.image;
 						}, function(error) {
 							$scope.showAlert('Error', error.exception);
 						});
@@ -128,22 +130,29 @@ angular.module('reportModule', ['ngStorage'])
 				}
 			};
 
-			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-
-				if (result.data != 0) {
-
-					$localStorage.imagen = filename;
-				}
-				else {
-
+		
+			 $cordovaFileTransfer.upload(url, targetPath, options)
+		      .then(function(result) {
+		        // Success!
+		        if (result.data!=0) {
+					
+					alert($localStorage.imagen);
+				}else{
+					$localStorage.imagen = '';
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
-
-			});
+		      }, function(err) {
+		        // Error
+		        $scope.showAlert('Error', 'La imagen no se subió correctamente.');
+		      }, function (progress) {
+		        // constant progress updates
+		      });
+			
+			;
 		}
 
 		///SCOPES DE CASOS DE MALTRATO
-		$scope.ubicacionMaltrato = function() {
+		$scope.ubicacionMaltrato = function() 
 
 			obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
 
