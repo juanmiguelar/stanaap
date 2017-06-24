@@ -128,17 +128,26 @@ angular.module('reportModule', ['ngStorage'])
 				}
 			};
 
-			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-				
-				if (result.data!=0) {
+			
+			 $cordovaFileTransfer.upload(url, targetPath, options)
+		      .then(function(result) {
+		        // Success!
+		        if (result.data!=0) {
 					
-					$localStorage.imagen = filename;		
+					$localStorage.imagen = filename;	
+					alert($localStorage.imagen);
 				}else{
 					
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
-
-			});
+		      }, function(err) {
+		        // Error
+		        $scope.showAlert('Error', 'La imagen no se subió correctamente.');
+		      }, function (progress) {
+		        // constant progress updates
+		      });
+			
+			;
 		}
 
 		///SCOPES DE CASOS DE MALTRATO
