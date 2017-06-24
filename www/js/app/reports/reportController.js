@@ -77,6 +77,7 @@ angular.module('reportModule', ['ngStorage'])
 								// Only copy because of access rights
 								$cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
 									$scope.image = newFileName;
+									$localStorage.imagen = $scope.image;
 								}, function(error) {
 									$scope.showAlert('Error', error.exception);
 								});
@@ -88,6 +89,7 @@ angular.module('reportModule', ['ngStorage'])
 						// Move the file to permanent storage
 						$cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
 							$scope.image = newFileName;
+							$localStorage.imagen = $scope.image;
 						}, function(error) {
 							$scope.showAlert('Error', error.exception);
 						});
@@ -134,10 +136,9 @@ angular.module('reportModule', ['ngStorage'])
 		        // Success!
 		        if (result.data!=0) {
 					
-					$localStorage.imagen = filename;	
 					alert($localStorage.imagen);
 				}else{
-					
+					$localStorage.imagen = '';
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
 		      }, function(err) {
