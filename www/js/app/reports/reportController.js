@@ -106,9 +106,9 @@ angular.module('reportModule', ['ngStorage'])
 			}
 		}
 
-		
+
 		$scope.uploadImage = function() {
-		
+
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
@@ -129,12 +129,13 @@ angular.module('reportModule', ['ngStorage'])
 			};
 
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-				
-				if (result.data!=0) {
-					
-					$localStorage.imagen = filename;		
-				}else{
-					
+
+				if (result.data != 0) {
+
+					$localStorage.imagen = filename;
+				}
+				else {
+
 					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
 				}
 
@@ -194,9 +195,9 @@ angular.module('reportModule', ['ngStorage'])
 			insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 		}
 
-		
+
 		$scope.guardarInfoReporteGeneralAdopcion = function() {
-			
+
 
 			if ($scope.titulo == null || $scope.descripcion == null) {
 				var alertPopup = $ionicPopup.alert({
