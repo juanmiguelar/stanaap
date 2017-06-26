@@ -5,8 +5,7 @@ angular.module('reportModule', ['ngStorage'])
 	$cordovaCamera, $cordovaFile, $cordovaFileTransfer,
 	$cordovaDevice, $cordovaActionSheet, $cordovaGeolocation) {
 
-	///SCOPES DE CASOS DE MALTRATO O ABANDONO
-
+	
 	if ($localStorage.CORREO_USUARIO == null) {
 		var alertPopup = $ionicPopup.alert({
 			title: 'Inicie seción',
@@ -44,7 +43,6 @@ angular.module('reportModule', ['ngStorage'])
 					$scope.selectPicture(type);
 				}
 			});
-
 		}
 		$scope.selectPicture = function(sourceType) {
 			var options = {
@@ -77,7 +75,6 @@ angular.module('reportModule', ['ngStorage'])
 								// Only copy because of access rights
 								$cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
 									$scope.image = newFileName;
-									$localStorage.imagen = $scope.image;
 								}, function(error) {
 									$scope.showAlert('Error', error.exception);
 								});
@@ -89,7 +86,6 @@ angular.module('reportModule', ['ngStorage'])
 						// Move the file to permanent storage
 						$cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
 							$scope.image = newFileName;
-							$localStorage.imagen = $scope.image;
 						}, function(error) {
 							$scope.showAlert('Error', error.exception);
 						});
@@ -107,10 +103,7 @@ angular.module('reportModule', ['ngStorage'])
 				return cordova.file.dataDirectory + image;
 			}
 		}
-
-
 		$scope.uploadImage = function() {
-
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
@@ -130,32 +123,14 @@ angular.module('reportModule', ['ngStorage'])
 				}
 			};
 
-		
-			 $cordovaFileTransfer.upload(url, targetPath, options)
-		      .then(function(result) {
-		        // Success!
-		        if (result.data!=0) {
-					
-					alert($localStorage.imagen);
-				}else{
-					$localStorage.imagen = '';
-					$scope.showAlert('Error', 'La imagen no se subió correctamente.');
-				}
-		      }, function(err) {
-		        // Error
-		        $scope.showAlert('Error', 'La imagen no se subió correctamente.');
-		      }, function (progress) {
-		        // constant progress updates
-		      });
-			
-			;
+			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+				$scope.showAlert('Exito!', 'Imagen subida.');
+			});
 		}
 
 		///SCOPES DE CASOS DE MALTRATO
-		$scope.ubicacionMaltrato = function() 
-
+		$scope.ubicacionMaltrato = function() {
 			obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
-
 			insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 		}
 
@@ -190,8 +165,6 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-				$scope.uploadImage();
-
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
 				$state.go('app.home');
@@ -203,11 +176,9 @@ angular.module('reportModule', ['ngStorage'])
 			obtenerUbicacion($localStorage, $cordovaGeolocation);
 			insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 		}
-
-
+		
 		$scope.guardarInfoReporteGeneralAdopcion = function() {
-
-
+			
 			if ($scope.titulo == null || $scope.descripcion == null) {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Datos incompletos',
@@ -225,7 +196,7 @@ angular.module('reportModule', ['ngStorage'])
 		}
 
 		$scope.guardarInfoReporteAdopcion = function() {
-
+			console.log($scope.tamanno);
 			if ($scope.tamanno == null || $scope.especie == null) {
 				var alertPopup = $ionicPopup.alert({
 					title: 'Datos incompletos',
@@ -238,8 +209,6 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-				$scope.uploadImage();
-
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
@@ -377,9 +346,7 @@ function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $loc
 		id_direccion: $localStorage.ID_DIRECCION,
 		id_maltrato: $localStorage.ID_MALTRATO,
 		correo: $localStorage.CORREO_USUARIO,
-		tipo: $localStorage.tipoMaltrato,
-		imagen: $localStorage.imagen
-
+		tipo: $localStorage.tipoMaltrato
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
 		if ($scope.response == 1) {
@@ -412,9 +379,7 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 		descripcion: $localStorage.descripcion,
 		id_direccion: $localStorage.ID_DIRECCION,
 		id_adopcion: $localStorage.ID_ADOPCION,
-		correo: $localStorage.CORREO_USUARIO,
-		imagen: $localStorage.imagen
-
+		correo: $localStorage.CORREO_USUARIO
 
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
