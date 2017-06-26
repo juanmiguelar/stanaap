@@ -134,22 +134,22 @@ angular.module('reportModule', ['ngStorage'])
 			
 			// Codigo nuevo
 			
-			 //$cordovaFileTransfer.upload(url, targetPath, options)
-		  //    .then(function(result) {
-		  //      // Success!
-		  //      if (result.data!=0) {
-					
-				// 	alert($localStorage.imagen);
-				// }else{
-				// 	$localStorage.imagen = '';
-				// 	$scope.showAlert('Error', 'La imagen no se subió correctamente.');
-				// }
-		  //    }, function(err) {
-		  //      // Error
-		  //      $scope.showAlert('Error', 'La imagen no se subió correctamente.');
-		  //    }, function (progress) {
-		  //      // constant progress updates
-		  //    });
+					 //$cordovaFileTransfer.upload(url, targetPath, options)
+				  //    .then(function(result) {
+				  //      // Success!
+				  //      if (result.data!=0) {
+							
+						// 	alert($localStorage.imagen);
+						// }else{
+						// 	$localStorage.imagen = '';
+						// 	$scope.showAlert('Error', 'La imagen no se subió correctamente.');
+						// }
+				  //    }, function(err) {
+				  //      // Error
+				  //      $scope.showAlert('Error', 'La imagen no se subió correctamente.');
+				  //    }, function (progress) {
+				  //      // constant progress updates
+				  //    });
 			
 			// Codigo nuevo
 			
@@ -190,7 +190,8 @@ angular.module('reportModule', ['ngStorage'])
 				});
 			}
 			else {
-
+				// Guardar la imagen en el servidor
+				$scope.uploadImage();
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
@@ -234,7 +235,8 @@ angular.module('reportModule', ['ngStorage'])
 				});
 			}
 			else {
-
+				// Subir la imagen al servidor
+				$scope.uploadImage();
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
