@@ -191,7 +191,7 @@ angular.module('reportModule', ['ngStorage'])
 			}
 			else {
 				// Guardar la imagen en el servidor
-				uploadImg($scope, $cordovaFileTransfer);
+				
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
@@ -236,7 +236,7 @@ angular.module('reportModule', ['ngStorage'])
 			}
 			else {
 				// Subir la imagen al servidor
-				uploadImg($scope, $cordovaFileTransfer);
+				
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
@@ -435,29 +435,5 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 
 }
 
-function uploadImg($scope, $cordovaFileTransfer){
-	// Destination URL
-			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
-			// File for Upload
-			var targetPath = $scope.pathForImage($scope.image);
-
-			// File name only
-			var filename = $scope.image;
-
-			var options = {
-				fileKey: "file",
-				fileName: filename,
-				chunkedMode: false,
-				mimeType: "multipart/form-data",
-				params: {
-					'fileName': filename
-				}
-			};
-
-			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-				$scope.showAlert('Exito!', 'Imagen subida.');
-			});
-	
-}
 
