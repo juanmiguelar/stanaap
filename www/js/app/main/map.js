@@ -74,7 +74,7 @@ function initMap($scope, $localStorage) {
           '</div>'+
         
           '<div class="item item-image">' +
-            /*'<img src="img/cover.jpg">' +*/
+          '<img src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/'+ arrayUbicaciones[i].IMAGEN +'">' +
           '</div>' +
         
           '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" >' +
