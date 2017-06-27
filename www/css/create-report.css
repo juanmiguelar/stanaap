@@ -130,6 +130,9 @@ height: 16vh;
     display: block;
 }
 
+.img-upload{
+    margin-bottom: 5vh;
+  }
 .botonImagen {
        background-color: transparent;
     border-color: transparent;
@@ -142,4 +145,5 @@ height: 16vh;
 
 .ImagenBtnFoto {
     width: 12vh;
+
 }
