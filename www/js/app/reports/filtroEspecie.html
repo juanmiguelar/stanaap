@@ -5,9 +5,9 @@
     </ion-nav-buttons>
     
  <link href="css/filtroEspecie.css" rel="stylesheet">
- <h2 class="titulo">Busqueda por especie</h2>
-<ion-list class="listaEspecies">
-  <ion-item>
+ <h2 class="titulo">Búsqueda por especie</h2>
+<ion-list class="listaEspecies" ng-controller="searchController">
+  <ion-item ng-click="buscarPerros()">
     <ion-thumbnail item-start>
       <img src="img/especies/dog.png">
     </ion-thumbnail>
@@ -17,7 +17,7 @@
     </div>
    <a href="#/app/searchReport"> <button ion-button clear item-end class="botonVer ion-chevron-right"></button></a>
   </ion-item>
-  <ion-item>
+  <ion-item ng-click="buscarGatos()" href="#/app/searchReport">
     <ion-thumbnail item-start>
       <img src="img/especies/cat.png">
     </ion-thumbnail>
@@ -27,7 +27,7 @@
     </div>
       <a href="#/app/searchReport"> <button ion-button clear item-end class="botonVer ion-chevron-right"></button></a>
   </ion-item>
-   <ion-item>
+   <ion-item ng-click="buscarAves()" href="#/app/searchReport">
     <ion-thumbnail item-start>
       <img src="img/especies/bird.png">
     </ion-thumbnail>
@@ -37,7 +37,7 @@
     </div>
       <a href="#/app/searchReport"> <button ion-button clear item-end class="botonVer ion-chevron-right"></button></a>
   </ion-item>
-   <ion-item>
+   <ion-item ng-click="buscarOtros()" href="#/app/searchReport">
     <ion-thumbnail item-start>
       <img src="img/especies/horse.png">
     </ion-thumbnail>
@@ -50,4 +50,3 @@
 </ion-list>
   </ion-content>
 </ion-view>    
-
