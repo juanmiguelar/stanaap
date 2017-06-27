@@ -68,15 +68,10 @@ function initMap($scope, $localStorage) {
               contentString = 
         '<div class="list card">' +
           '<div class="item item-avatar">' +
-          /* '<img src="img/avatar.jpg"> ' + */
+          '<img width="30vh" height="50vh" src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/'+ arrayUbicaciones[i].IMAGEN +'">' +
           '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
           '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
           '</div>'+
-        
-          '<div class="item item-image">' +
-          '<img src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/'+ arrayUbicaciones[i].IMAGEN +'">' +
-          '</div>' +
-        
           '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" >' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+

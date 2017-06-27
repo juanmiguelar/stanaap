@@ -129,7 +129,21 @@ height: 16vh;
     margin-right: auto;
     display: block;
 }
+
 .img-upload{
     margin-bottom: 5vh;
-    
+  }
+.botonImagen {
+       background-color: transparent;
+    border-color: transparent;
+    margin-top: -11vh;
+    margin: auto;
+    margin-top: -9vh;
+    margin-bottom: -4vh;
+    vertical-align: center;
+}
+
+.ImagenBtnFoto {
+    width: 12vh;
+
 }

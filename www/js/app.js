@@ -1,7 +1,7 @@
 // Esto es un conflicto con aleclearasdfsdx
 
 angular.module('starter', ['ionic',  'loginModule','registerModule', 
-              'reportModule', 'mapModule', 'showReportModule','logoutModule', 
+              'reportModule', 'mapModule', 'showReportModule','logoutModule','searchModule',
               'ngStorage','ngCordova' ])
 
 
@@ -46,7 +46,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
       url: '/filtroEspecie', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/filtroEspecie.html'
+          templateUrl:'js/app/reports/filtroEspecie.html',
+          controller:'searchController'
         }
       }
     })
@@ -55,7 +56,8 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
       url: '/searchReport', 
       views:{
         'content':{
-          templateUrl:'js/app/reports/searchReport.html'
+          templateUrl:'js/app/reports/searchReport.html',
+          controller:'searchController'
         }
       }
     })
