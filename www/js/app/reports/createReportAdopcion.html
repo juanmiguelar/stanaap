@@ -26,8 +26,9 @@
                <img ng-src="{{pathForImage(image)}}" style="width: 50%; height: 50%;" class="center">
             </div>
             <div class="button-bar">
-               <button class="button icon-left ion-camera" ng-click="loadImage()">Subir Foto</button>
-               <button class="button icon-left ion-upload" ng-click="uploadImage()" ng-disabled="image === null">Terminar</button>
+               <button class="botonImagen" ng-click="loadImage()">
+               <img class="ImagenBtnFoto" src="img/cam.png">
+           </button>
             </div>
             <div class="buttonHolder">
                 <button class="button button-large btn-registrarse" ng-click="guardarInfoReporteGeneralAdopcion()" >
