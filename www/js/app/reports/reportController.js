@@ -60,6 +60,9 @@ angular.module('reportModule', ['ngStorage'])
 					var d = new Date(),
 						n = d.getTime(),
 						newFileName = n + ".jpg";
+						
+					// Guardar este nombre en el localStorage
+					$localStorage.imagen = newFileName;
 
 					// If you are trying to load image from the gallery on Android we need special treatment!
 					if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
@@ -95,6 +98,7 @@ angular.module('reportModule', ['ngStorage'])
 					// Not always an error, maybe cancel was pressed...
 				})
 		}
+		
 		$scope.pathForImage = function(image) {
 			if (image === null) {
 				return '';
@@ -103,6 +107,7 @@ angular.module('reportModule', ['ngStorage'])
 				return cordova.file.dataDirectory + image;
 			}
 		}
+		
 		$scope.uploadImage = function() {
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
@@ -126,6 +131,28 @@ angular.module('reportModule', ['ngStorage'])
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
 				$scope.showAlert('Exito!', 'Imagen subida.');
 			});
+			
+			// Codigo nuevo
+			
+					 //$cordovaFileTransfer.upload(url, targetPath, options)
+				  //    .then(function(result) {
+				  //      // Success!
+				  //      if (result.data!=0) {
+							
+						// 	alert($localStorage.imagen);
+						// }else{
+						// 	$localStorage.imagen = '';
+						// 	$scope.showAlert('Error', 'La imagen no se subió correctamente.');
+						// }
+				  //    }, function(err) {
+				  //      // Error
+				  //      $scope.showAlert('Error', 'La imagen no se subió correctamente.');
+				  //    }, function (progress) {
+				  //      // constant progress updates
+				  //    });
+			
+			// Codigo nuevo
+			
 		}
 
 		///SCOPES DE CASOS DE MALTRATO
@@ -163,7 +190,8 @@ angular.module('reportModule', ['ngStorage'])
 				});
 			}
 			else {
-
+				// Guardar la imagen en el servidor
+				
 				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 
@@ -207,7 +235,8 @@ angular.module('reportModule', ['ngStorage'])
 				});
 			}
 			else {
-
+				// Subir la imagen al servidor
+				
 				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
@@ -346,7 +375,8 @@ function insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $loc
 		id_direccion: $localStorage.ID_DIRECCION,
 		id_maltrato: $localStorage.ID_MALTRATO,
 		correo: $localStorage.CORREO_USUARIO,
-		tipo: $localStorage.tipoMaltrato
+		tipo: $localStorage.tipoMaltrato,
+		imagen: $localStorage.imagen
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
 		if ($scope.response == 1) {
@@ -379,7 +409,8 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 		descripcion: $localStorage.descripcion,
 		id_direccion: $localStorage.ID_DIRECCION,
 		id_adopcion: $localStorage.ID_ADOPCION,
-		correo: $localStorage.CORREO_USUARIO
+		correo: $localStorage.CORREO_USUARIO,
+		imagen: $localStorage.imagen
 
 	}).then(function successCallback(response) {
 		$scope.response = response.data;
@@ -403,3 +434,6 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 	});
 
 }
+
+
+
