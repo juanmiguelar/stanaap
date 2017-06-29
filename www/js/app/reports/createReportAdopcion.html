@@ -1,10 +1,11 @@
 
 <ion-view cache-view="false" class="view" view-title="Stanapp">
+    
+    <ion-nav-buttons side="right">
+        <a class="button button-icon ion-android-search" ui-sref="app.filtroEspecie" ></a>
+    </ion-nav-buttons>
+    
     <ion-content overflow-scroll="true">
-        <ion-nav-buttons side="right">
-            <a class="button button-icon ion-android-search" href="/#/app/filtroEspecie" ></a>
-        </ion-nav-buttons>
-        
         <div class="list form" ng-controller="reportController">
             <link href="css/reporteAdopcion.css" rel="stylesheet">
             <div class="titulo">
