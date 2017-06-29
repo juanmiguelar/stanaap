@@ -147,3 +147,11 @@ height: 16vh;
     width: 12vh;
 
 }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 10vh;
+    margin-top: -9vh;
+}
