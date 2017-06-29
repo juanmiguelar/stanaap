@@ -2,10 +2,10 @@ var arrayPos = [];
 
 angular.module('mapModule', ['ngStorage'])
 
-.controller('MapCtrl', function($http,$scope, $state, $localStorage){
+.controller('MapCtrl', function($http,$scope, $state, $localStorage, $cordovaGeolocation, $ionicPopup){
 
     $scope.data = {};
-    mostrarReportes($http, $scope, $state,$localStorage); 
+    mostrarReportes($http, $scope, $state,$localStorage, $cordovaGeolocation, $ionicPopup); 
     
     
 //     $scope.go = function () {
@@ -15,7 +15,7 @@ angular.module('mapModule', ['ngStorage'])
 
 
 // Cargando el array del servidor
-function mostrarReportes($http, $scope, $state,$localStorage) {
+function mostrarReportes($http, $scope, $state,$localStorage, $cordovaGeolocation, $ionicPopup) {
     
         // Trae la información de los reportes(Adopción y maltrato) con la direccion
         var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
@@ -25,14 +25,16 @@ function mostrarReportes($http, $scope, $state,$localStorage) {
             email: $localStorage.CORREO_USUARIO
         }).then(function successCallback(response) {
            $scope.arrayCasos = response.data
-           initMap($scope,$localStorage);
+           initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup);
           }, function errorCallback(response) {
           });
     }
 // 
   
-function initMap($scope, $localStorage) {
-  var uluru = {lat: 10.087, lng: -84.47};
+function initMap($scope, $localStorage, $ionicPopup, $cordovaGeolocation) {
+  //var uluru = {lat: 10.087, lng: -84.47};
+  obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
+  var uluru = {lat: $localStorage.latitud, lng: $localStorage.longitud};
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: uluru
