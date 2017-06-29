@@ -1,7 +1,9 @@
 angular.module('loginModule', ['ngStorage'])
 
-.controller('loginController', function($http, $scope, $ionicPopup, $state, $localStorage) {
-
+.controller('loginController', function($http, $scope, $ionicPopup, $state, $localStorage,$ionicSideMenuDelegate) {
+    
+    $ionicSideMenuDelegate.canDragContent(false)
+    
     $scope.login = function() {
 
         if ($scope.email == null || $scope.password == null || $scope.email == "" || $scope.password == "") {
@@ -61,7 +63,7 @@ function validarUsuario($http, $scope, $ionicPopup, $state, $localStorage) {
 
         if (result.data == 1) {
             $localStorage.CORREO_USUARIO = $scope.email;
-            $state.go('app.home');
+            $state.go('app.home', {}, { reload: true });
         }
 
         if (result.data != 0 && result.data != 1) {
