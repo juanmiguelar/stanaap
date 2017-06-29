@@ -5,9 +5,10 @@
     </ion-nav-buttons>
     
  <link href="/css/filtroEspecie.css" rel="stylesheet">
- 
+  <link href="/css/create-report.css" rel="stylesheet">
+ <h2 class="titulo">Resultados de la búsqueda</h2>
 <ion-list class="listaEspecies">
-  <h2 class="titulo">Resultados de la búsqueda</h2>
+  
   <ion-item ng-repeat="caso in casos" ng-click="showReport(caso.ID,caso.TIPO)">
     <ion-thumbnail item-start>
       <img src="img/especies/dog.png">
