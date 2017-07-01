@@ -40,7 +40,7 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
   var uluru = {lat: $localStorage.latitud, lng: $localStorage.longitud};
   //console.log(uluru);
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 20,
+    zoom: 14,
     center: uluru
   });
  
