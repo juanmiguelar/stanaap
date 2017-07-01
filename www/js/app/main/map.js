@@ -38,9 +38,9 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
   // Esta es la función que esta en el report controller. 
   obtenerUbicacion2($localStorage, $cordovaGeolocation, $ionicPopup);////e
   var uluru = {lat: $localStorage.latitud, lng: $localStorage.longitud};
-  
+  //console.log(uluru);
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
+    zoom: 20,
     center: uluru
   });
  
@@ -110,9 +110,6 @@ function obtenerUbicacion2($localStorage, $cordovaGeolocation, $ionicPopup) {
 			var alertPopup = $ionicPopup.alert({
 				title: 'Ha ocurrido un error',
 				template: 'Error con la ubicación'
-			});
-			alertPopup.then(function(res) {
-				$state.go('app.createReport');
 			});
 		});
 }
