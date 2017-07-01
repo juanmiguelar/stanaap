@@ -2,7 +2,8 @@ var arrayPos = [];
 
 angular.module('mapModule', ['ngStorage'])
 
-.controller('MapCtrl', function($http,$scope, $state, $localStorage, $cordovaGeolocation, $ionicPopup){
+                                                                    // Aqui recibo el geolocation
+.controller('MapCtrl', function($http,$scope, $state, $localStorage, $ionicPopup, $cordovaGeolocation){
 
     $scope.data = {};
     mostrarReportes($http, $scope, $state,$localStorage, $cordovaGeolocation, $ionicPopup); 
@@ -31,10 +32,13 @@ function mostrarReportes($http, $scope, $state,$localStorage, $cordovaGeolocatio
     }
 // 
   
-function initMap($scope, $localStorage, $ionicPopup, $cordovaGeolocation) {
+function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
   //var uluru = {lat: 10.087, lng: -84.47};
-  obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
+  
+  // Esta es la función que esta en el report controller. 
+  obtenerUbicacion2($localStorage, $cordovaGeolocation, $ionicPopup);////e
   var uluru = {lat: $localStorage.latitud, lng: $localStorage.longitud};
+  
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: uluru
@@ -84,6 +88,33 @@ function initMap($scope, $localStorage, $ionicPopup, $cordovaGeolocation) {
             }
         })(marker, i));
     }
+}
+
+function obtenerUbicacion2($localStorage, $cordovaGeolocation, $ionicPopup) {
+  
+	var posOptions = {
+		timeout: 15000,
+		enableHighAccuracy: true
+	};
+
+	$cordovaGeolocation
+		.getCurrentPosition(posOptions)
+		.then(function(position) {
+			var lat = position.coords.latitude
+			var long = position.coords.longitude
+
+			$localStorage.latitud = lat;
+			$localStorage.longitud = long;
+
+		}, function(err) {
+			var alertPopup = $ionicPopup.alert({
+				title: 'Ha ocurrido un error',
+				template: 'Error con la ubicación'
+			});
+			alertPopup.then(function(res) {
+				$state.go('app.createReport');
+			});
+		});
 }
 
 
