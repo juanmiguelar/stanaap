@@ -1,6 +1,8 @@
 angular.module('registerModule',['ngStorage'])
 
-.controller('registerController', function ($http, $scope, $ionicPopup, $state, $localStorage) {
+.controller('registerController', function ($http, $scope, $ionicPopup, $state, $localStorage,$ionicSideMenuDelegate) {
+    
+    $ionicSideMenuDelegate.canDragContent(false)
     
     $scope.register = function() {
         
