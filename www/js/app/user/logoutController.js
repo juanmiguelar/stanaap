@@ -9,5 +9,5 @@ angular.module('logoutModule', ['ngStorage'])
         disableBack: true,
         historyRoot: true
     });
-    $state.go('app.login');
+    $state.go('app.home');
 });
