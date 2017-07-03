@@ -12,6 +12,12 @@ angular.module('mapModule', ['ngStorage'])
 //     $scope.go = function () {
 //   $location.path('#/app/showReportMaltratoAbandono');
 //     };
+
+  $scope.detalle = function(idReporte, tipo){
+    $localStorage.TIPO = tipo;
+    $localStorage.ID = idReporte;
+  }
+
  });
 
 
@@ -81,7 +87,7 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
           '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
           '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
           '</div>'+
-          '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" >' +
+          '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" ng-click="detalle('+ $localStorage.ID +', '+ $localStorage.TIPO +')">' +
           '<i class="icon ion-plus-round"></i>' +
           'Ver Detalles'+
           '</a>'+
