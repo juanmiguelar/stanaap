@@ -129,7 +129,7 @@ angular.module('reportModule', ['ngStorage'])
 			};
 
 			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
-				$scope.showAlert('Exito!', 'Imagen subida.');
+				
 			});
 			
 			// Codigo nuevo
