@@ -11,7 +11,7 @@ angular.module('menuModule', ['ngStorage'])
    $scope.validarMenu = function(){
    
     // Aqui los valores van cambiando
-       if($localStorage.CORREO_USUARIO){
+       if($localStorage.CORREO_USUARIO == ""){
             // En el caso de que el correo existe debe aparecer el salir sesion
             console.log("Si hay correo");
             

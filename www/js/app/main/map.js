@@ -77,21 +77,20 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
                
               }else{
                 $localStorage.ID = arrayUbicaciones[i].ID_ADOPCION; 
-                
               }
               $localStorage.TIPO = arrayUbicaciones[i].TIPO; 
               contentString = 
-        '<div class="list card">' +
-          '<div class="item item-avatar">' +
-          '<img width="30vh" height="50vh" src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/'+ arrayUbicaciones[i].IMAGEN +'">' +
-          '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
-          '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
-          '</div>'+
-          '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" ng-click="detalle('+ $localStorage.ID +', '+ $localStorage.TIPO +')">' +
-          '<i class="icon ion-plus-round"></i>' +
-          'Ver Detalles'+
-          '</a>'+
-        '</div>';
+              '<div class="list card">' +
+                '<div class="item item-avatar">' +
+                '<img width="30vh" height="50vh" src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/'+ arrayUbicaciones[i].IMAGEN +'">' +
+                '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
+                '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
+                '</div>'+
+                '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" ng-click="detalle('+ $localStorage.ID +', '+ $localStorage.TIPO +')">' +
+                '<i class="icon ion-plus-round"></i>' +
+                'Ver Detalles'+
+                '</a>'+
+              '</div>';
               infowindow.setContent(contentString);
               infowindow.open(map, marker);
             }
