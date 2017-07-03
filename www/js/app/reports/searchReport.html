@@ -1,15 +1,15 @@
 <ion-view cache-view="false" class="view" view-title="Stanapp" ng-init="mostrarLista()">
-     <ion-content overflow-scroll="true">
+     
    <ion-nav-buttons side="right">
         <a class="button button-icon ion-android-search" ui-sref="app.filtroEspecie" ></a>
     </ion-nav-buttons>
-    
+    <ion-content overflow-scroll="true">
  <link href="css/filtroEspecie.css" rel="stylesheet">
  <h2 class="titulo">Resultados de la búsqueda</h2>
 <ion-list class="listaEspecies">
   <ion-item ng-repeat="caso in casos" ng-click="showReport(caso.ID,caso.TIPO)">
     <ion-thumbnail item-start>
-      <img src="img/especies/dog.png">
+      <img src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/{{caso.IMAGEN}}">
     </ion-thumbnail>
     <div class="info">
     <h2>{{caso.TITULO}}</h2>
