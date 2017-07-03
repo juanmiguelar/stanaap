@@ -11,5 +11,5 @@ angular.module('logoutModule', ['ngStorage'])
     });
     $state.go('app.home');
     // $state.go('app.home', {}, {reload: true});
-   // $window.location.reload(true)
+    $window.location.reload(true)
 });

@@ -13,10 +13,10 @@ angular.module('mapModule', ['ngStorage'])
 //   $location.path('#/app/showReportMaltratoAbandono');
 //     };
 
-  $scope.detalle = function(idReporte, tipo){
-    $localStorage.TIPO = tipo;
-    $localStorage.ID = idReporte;
-  }
+    $scope.detalle = function(idReporte, tipo){
+      $localStorage.TIPO = tipo;
+      $localStorage.ID = idReporte;
+    }
 
  });
 
@@ -69,12 +69,11 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
           icon: 'img/report.png'
         }); 
     
-
+        // Acá la cosa esa peluda
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               if(arrayUbicaciones[i].TIPO == "maltrato" || arrayUbicaciones[i].TIPO == "abandono"){
                 $localStorage.ID = arrayUbicaciones[i].ID_MALTRATO;
-               
               }else{
                 $localStorage.ID = arrayUbicaciones[i].ID_ADOPCION; 
               }
@@ -86,7 +85,7 @@ function initMap($scope, $localStorage, $cordovaGeolocation, $ionicPopup) {
                 '<h2>'+ arrayUbicaciones[i].TITULO + '</h2>' +
                 '<p>'+ arrayUbicaciones[i].DESCRIPCION + '</p>' +
                 '</div>'+
-                '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" ng-click="detalle('+ $localStorage.ID +', '+ $localStorage.TIPO +')">' +
+                '<a class="item item-icon-left assertive" href="#/app/showReportMaltratoAbandono" ">' +
                 '<i class="icon ion-plus-round"></i>' +
                 'Ver Detalles'+
                 '</a>'+
