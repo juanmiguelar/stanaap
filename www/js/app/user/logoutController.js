@@ -1,6 +1,6 @@
 angular.module('logoutModule', ['ngStorage'])
 
-.controller('logoutController', function($scope,$window,$ionicHistory, $ionicPopup, $state, $localStorage) {
+.controller('logoutController', function($state,$scope,$window,$ionicHistory) {
 
     $window.localStorage.clear();
     $ionicHistory.clearCache();
