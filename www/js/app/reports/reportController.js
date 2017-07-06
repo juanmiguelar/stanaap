@@ -190,9 +190,9 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 				// Guardar la imagen en el servidor
 				
-				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-
+				//insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+				//insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+				insertarMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
 		}
@@ -460,6 +460,41 @@ function insertarAdopcion($http, $scope, $ionicPopup, $state, $localStorage){
 				title: 'Reportar caso',
 				template: 'Se ha reportado el caso!'
 			});		
+			alertPopup.then(function(res) {
+				$state.go('app.home');
+			});
+		}
+	}, function errorCallback(response) {
+		var alertPopup = $ionicPopup.alert({
+			title: 'Ocurrió un error',
+			template: 'No se pudo reportar el caso.'
+		});
+		alertPopup.then(function(res) {
+			$state.go('app.createReport');
+		});
+	});
+}
+
+function insertarMaltrato($http, $scope, $ionicPopup, $state, $localStorage){
+	var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+
+	$http.post(link, {
+		method: 'addMaltrato',
+		titulo: $localStorage.tituloMaltrato,
+		descripcion: $localStorage.descripcionMaltrato,
+		id_direccion: $localStorage.ID_DIRECCION,
+		especieMaltrato: $scope.especie,
+		raza: $scope.raza,
+		correo: $localStorage.CORREO_USUARIO,
+		tipo: $localStorage.tipoMaltrato,
+		imagen: $localStorage.imagen
+	}).then(function successCallback(response) {
+		$scope.response = response.data;
+		if ($scope.response == 1) {
+			var alertPopup = $ionicPopup.alert({
+				title: 'Reportar caso',
+				template: 'Se ha reportado el caso!'
+			});
 			alertPopup.then(function(res) {
 				$state.go('app.home');
 			});
