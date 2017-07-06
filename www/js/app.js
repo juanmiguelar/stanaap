@@ -86,6 +86,7 @@ angular.module('starter', ['ionic',  'loginModule','registerModule',
       url: '/logout', 
       views:{
         'content':{
+          templateUrl:'js/app/user/login.html',
           controller: 'logoutController'
         }
       }

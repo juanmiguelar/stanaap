@@ -16,8 +16,9 @@ angular.module('reportModule', ['ngStorage'])
 		});
 	}
 	else {
+		
+		// Camara
 		$scope.image = null;
-
 		$scope.showAlert = function(title, msg) {
 			var alertPopup = $ionicPopup.alert({
 				title: title,
@@ -98,7 +99,6 @@ angular.module('reportModule', ['ngStorage'])
 					// Not always an error, maybe cancel was pressed...
 				})
 		}
-		
 		$scope.pathForImage = function(image) {
 			if (image === null) {
 				return '';
@@ -107,7 +107,6 @@ angular.module('reportModule', ['ngStorage'])
 				return cordova.file.dataDirectory + image;
 			}
 		}
-		
 		$scope.uploadImage = function() {
 			// Destination URL
 			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
@@ -154,13 +153,13 @@ angular.module('reportModule', ['ngStorage'])
 			// Codigo nuevo
 			
 		}
-
+		// Camara
+		
 		///SCOPES DE CASOS DE MALTRATO
 		$scope.ubicacionMaltrato = function() {
 			obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup);
 			insertarDireccionMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 		}
-
 		$scope.guardarInfoReporteGeneralMaltrato = function() {
 			if ($scope.titulo == null || $scope.descripcion == null || $scope.tipo == null) {
 				var alertPopup = $ionicPopup.alert({
@@ -178,7 +177,6 @@ angular.module('reportModule', ['ngStorage'])
 				$state.go('app.animalMaltratoAbandonoInfo');
 			}
 		}
-
 		$scope.guardarInfoReporteMaltrato = function() {
 			if ($scope.especie == null) {
 				var alertPopup = $ionicPopup.alert({
@@ -192,19 +190,18 @@ angular.module('reportModule', ['ngStorage'])
 			else {
 				// Guardar la imagen en el servidor
 				
-				insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-				insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
-
+				//insertarAnimalMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+				//insertarReporteGeneralMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
+				insertarMaltrato($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
 		}
-
+		
 		///SCOPES DE CASOS DE ADOPCION
 		$scope.ubicacionAdopcion = function() {
 			obtenerUbicacion($localStorage, $cordovaGeolocation,$ionicPopup);
 			insertarDireccionAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 		}
-		
 		$scope.guardarInfoReporteGeneralAdopcion = function() {
 			
 			if ($scope.titulo == null || $scope.descripcion == null) {
@@ -222,7 +219,6 @@ angular.module('reportModule', ['ngStorage'])
 				$state.go('app.animalAdopcionInfo');
 			}
 		}
-
 		$scope.guardarInfoReporteAdopcion = function() {
 			console.log($scope.tamanno);
 			if ($scope.tamanno == null || $scope.especie == null) {
@@ -235,10 +231,10 @@ angular.module('reportModule', ['ngStorage'])
 				});
 			}
 			else {
-				// Subir la imagen al servidor
 				
-				insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
-				insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+				//insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+				//nsertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
+				insertarAdopcion($http, $scope, $ionicPopup, $state, $localStorage);
 				$state.go('app.home');
 			}
 		}
@@ -246,6 +242,7 @@ angular.module('reportModule', ['ngStorage'])
 	}
 });
 
+// Este no se cambia
 function obtenerUbicacion($localStorage, $cordovaGeolocation, $ionicPopup) {
 	var posOptions = {
 		timeout: 15000,
@@ -336,7 +333,7 @@ function insertarAnimalAdopcion($http, $scope, $ionicPopup, $state, $localStorag
 			template: 'Ha ocurrido un error con el reporte'
 		});
 		alertPopup.then(function(res) {
-			$state.go('app.createReport');
+			$state.go('app.createReport'); 
 		});
 	});
 }
@@ -419,6 +416,9 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 				title: 'Reportar caso',
 				template: 'Se ha reportado el caso!'
 			});
+			
+			
+			
 			alertPopup.then(function(res) {
 				$state.go('app.home');
 			});
@@ -435,5 +435,79 @@ function insertarReporteGeneralAdopcion($http, $scope, $ionicPopup, $state, $loc
 
 }
 
+// Metodo nuevo para insertar todo lo de maltrato
+
+// Metodo nuevo para insertar todo lo de adopcion
+function insertarAdopcion($http, $scope, $ionicPopup, $state, $localStorage){
+	var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+
+	$http.post(link, {
+		method: 'addAdopcion',
+		titulo: $localStorage.titulo,
+		descripcion: $localStorage.descripcion,
+		id_direccion: $localStorage.ID_DIRECCION,
+		especieAdopcion: $scope.especie,
+		raza: $scope.raza,
+		edad: $scope.edad,
+		tamanno: $scope.tamanno,
+		correo: $localStorage.CORREO_USUARIO,
+		imagen: $localStorage.imagen
+
+	}).then(function successCallback(response) {
+		$scope.response = response.data;
+		if ($scope.response == 1) {
+			var alertPopup = $ionicPopup.alert({
+				title: 'Reportar caso',
+				template: 'Se ha reportado el caso!'
+			});		
+			alertPopup.then(function(res) {
+				$state.go('app.home');
+			});
+		}
+	}, function errorCallback(response) {
+		var alertPopup = $ionicPopup.alert({
+			title: 'Ocurrió un error',
+			template: 'No se pudo reportar el caso.'
+		});
+		alertPopup.then(function(res) {
+			$state.go('app.createReport');
+		});
+	});
+}
+
+function insertarMaltrato($http, $scope, $ionicPopup, $state, $localStorage){
+	var link = 'https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/reportRouter.php';
+
+	$http.post(link, {
+		method: 'addMaltrato',
+		titulo: $localStorage.tituloMaltrato,
+		descripcion: $localStorage.descripcionMaltrato,
+		id_direccion: $localStorage.ID_DIRECCION,
+		especieMaltrato: $scope.especie,
+		raza: $scope.raza,
+		correo: $localStorage.CORREO_USUARIO,
+		tipo: $localStorage.tipoMaltrato,
+		imagen: $localStorage.imagen
+	}).then(function successCallback(response) {
+		$scope.response = response.data;
+		if ($scope.response == 1) {
+			var alertPopup = $ionicPopup.alert({
+				title: 'Reportar caso',
+				template: 'Se ha reportado el caso!'
+			});
+			alertPopup.then(function(res) {
+				$state.go('app.home');
+			});
+		}
+	}, function errorCallback(response) {
+		var alertPopup = $ionicPopup.alert({
+			title: 'Ocurrió un error',
+			template: 'No se pudo reportar el caso.'
+		});
+		alertPopup.then(function(res) {
+			$state.go('app.createReport');
+		});
+	});
+}
 
 

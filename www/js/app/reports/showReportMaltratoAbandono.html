@@ -1,10 +1,9 @@
 <ion-view cache-view="false" class="view" view-title="Stanapp" ng-controller="showReportController">
-     <ion-content overflow-scroll="true">
+     
     <ion-nav-buttons side="right">
-       <a class="button button-icon ion-android-search" ui-sref="app.filtroEspecie"  ></a>
-       <!--href="/#/app/filtroEspecie"-->
+        <a class="button button-icon ion-android-search" ui-sref="app.filtroEspecie" ></a>
     </ion-nav-buttons>
-    
+    <ion-content overflow-scroll="true">
  <link href="css/showReport.css" rel="stylesheet">
     <div class="list card">
            <div id="titulo">
@@ -19,7 +18,7 @@
 
 
     <h2>Información del Animal</h2>
-    <h2>Especie: {{arrayCasos[0].ESPECIE_MALTRATO}}</h2>
+    <h2>Especie: {{arrayCasos[0].ESPECIE}}</h2>
     <h2>Raza: {{arrayCasos[0].RAZA}}</h2>
 
   </div>
@@ -34,6 +33,11 @@
     <img src="http://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/images/{{arrayCasos[0].IMAGEN}}"></img>
     </div>
   </div>
+  <div class="item item-body">
+    <h2>Contacto:</h2>
+    <p> Correo: {{arrayCasos[0].CORREO}} </p>
+    <p> Telefono: {{arrayCasos[0].TELEFONO}} </p>
+     </div>
 </div>
   </ion-content>
 </ion-view>    

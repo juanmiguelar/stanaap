@@ -6,7 +6,7 @@ angular.module('registerModule',['ngStorage'])
     
     $scope.register = function() {
         
-    if($scope.nombre == null || $scope.contrasenna == null || $scope.verify == null){
+    if($scope.telefono == null || $scope.nombre == null || $scope.contrasenna == null || $scope.verify == null){
             var alertPopup = $ionicPopup.alert({
                 title: 'Datos incompletos',
                 template: 'Debe ingresar todos los datos del formulario'
@@ -71,7 +71,8 @@ angular.module('registerModule',['ngStorage'])
             method: 'add',
             correo: $scope.correo,
             contrasenna: $scope.contrasenna,
-            nombre: $scope.nombre
+            nombre: $scope.nombre,
+            telefono: $scope.telefono
         }).then(function(result) {
     
             $scope.response = result.data;
