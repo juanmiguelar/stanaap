@@ -9,7 +9,8 @@ angular.module('logoutModule', ['ngStorage'])
         disableBack: true,
         historyRoot: true
     });
-    $state.go('app.home');
+    $state.go('app.login');
+    
     // $state.go('app.home', {}, {reload: true});
-    $window.location.reload(true)
+    // $window.location.reload(true)
 });
