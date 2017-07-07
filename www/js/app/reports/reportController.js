@@ -17,143 +17,143 @@ angular.module('reportModule', ['ngStorage'])
 	}
 	else {
 		
-		// // Camara
-		// $scope.image = null;
-		// $scope.showAlert = function(title, msg) {
-		// 	var alertPopup = $ionicPopup.alert({
-		// 		title: title,
-		// 		template: msg
-		// 	});
-		// }
-		// $scope.loadImage = function() {
-		// 	var options = {
-		// 		title: 'Seleccionar Fuente de la Imagen',
-		// 		buttonLabels: ['Usar Galería', 'Usar Cámara'],
-		// 		addCancelButtonWithLabel: 'Cancelar',
-		// 		androidEnableCancelButton: true,
-		// 	};
-		// 	$cordovaActionSheet.show(options).then(function(btnIndex) {
-		// 		var type = null;
-		// 		if (btnIndex === 1) {
-		// 			type = Camera.PictureSourceType.PHOTOLIBRARY;
-		// 		}
-		// 		else if (btnIndex === 2) {
-		// 			type = Camera.PictureSourceType.CAMERA;
-		// 		}
-		// 		if (type !== null) {
-		// 			$scope.selectPicture(type);
-		// 		}
-		// 	});
-		// }
-		// $scope.selectPicture = function(sourceType) {
-		// 	var options = {
-		// 		quality: 100,
-		// 		destinationType: Camera.DestinationType.FILE_URI,
-		// 		sourceType: sourceType,
-		// 		saveToPhotoAlbum: false
-		// 	};
+		// Camara
+		$scope.image = null;
+		$scope.showAlert = function(title, msg) {
+			var alertPopup = $ionicPopup.alert({
+				title: title,
+				template: msg
+			});
+		}
+		$scope.loadImage = function() {
+			var options = {
+				title: 'Seleccionar Fuente de la Imagen',
+				buttonLabels: ['Usar Galería', 'Usar Cámara'],
+				addCancelButtonWithLabel: 'Cancelar',
+				androidEnableCancelButton: true,
+			};
+			$cordovaActionSheet.show(options).then(function(btnIndex) {
+				var type = null;
+				if (btnIndex === 1) {
+					type = Camera.PictureSourceType.PHOTOLIBRARY;
+				}
+				else if (btnIndex === 2) {
+					type = Camera.PictureSourceType.CAMERA;
+				}
+				if (type !== null) {
+					$scope.selectPicture(type);
+				}
+			});
+		}
+		$scope.selectPicture = function(sourceType) {
+			var options = {
+				quality: 100,
+				destinationType: Camera.DestinationType.FILE_URI,
+				sourceType: sourceType,
+				saveToPhotoAlbum: false
+			};
 
-		// 	$cordovaCamera.getPicture(options).then(function(imagePath) {
-		// 			// Grab the file name of the photo in the temporary directory
-		// 			var currentName = imagePath.replace(/^.*[\\\/]/, '');
+			$cordovaCamera.getPicture(options).then(function(imagePath) {
+					// Grab the file name of the photo in the temporary directory
+					var currentName = imagePath.replace(/^.*[\\\/]/, '');
 
-		// 			//Create a new name for the photo
-		// 			var d = new Date(),
-		// 				n = d.getTime(),
-		// 				newFileName = n + ".jpg";
+					//Create a new name for the photo
+					var d = new Date(),
+						n = d.getTime(),
+						newFileName = n + ".jpg";
 						
-		// 			// Guardar este nombre en el localStorage
-		// 			$localStorage.imagen = newFileName;
+					// Guardar este nombre en el localStorage
+					$localStorage.imagen = newFileName;
 
-		// 			// If you are trying to load image from the gallery on Android we need special treatment!
-		// 			if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-		// 				window.FilePath.resolveNativePath(imagePath, function(entry) {
-		// 					window.resolveLocalFileSystemURL(entry, success, fail);
+					// If you are trying to load image from the gallery on Android we need special treatment!
+					if ($cordovaDevice.getPlatform() == 'Android' && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
+						window.FilePath.resolveNativePath(imagePath, function(entry) {
+							window.resolveLocalFileSystemURL(entry, success, fail);
 
-		// 					function fail(e) {
-		// 						console.error('Error: ', e);
-		// 					}
+							function fail(e) {
+								console.error('Error: ', e);
+							}
 
-		// 					function success(fileEntry) {
-		// 						var namePath = fileEntry.nativeURL.substr(0, fileEntry.nativeURL.lastIndexOf('/') + 1);
-		// 						// Only copy because of access rights
-		// 						$cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
-		// 							$scope.image = newFileName;
-		// 						}, function(error) {
-		// 							$scope.showAlert('Error', error.exception);
-		// 						});
-		// 					};
-		// 				});
-		// 			}
-		// 			else {
-		// 				var namePath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-		// 				// Move the file to permanent storage
-		// 				$cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
-		// 					$scope.image = newFileName;
-		// 				}, function(error) {
-		// 					$scope.showAlert('Error', error.exception);
-		// 				});
-		// 			}
-		// 		},
-		// 		function(err) {
-		// 			// Not always an error, maybe cancel was pressed...
-		// 		})
-		// }
-		// $scope.pathForImage = function(image) {
-		// 	if (image === null) {
-		// 		return '';
-		// 	}
-		// 	else {
-		// 		return cordova.file.dataDirectory + image;
-		// 	}
-		// }
-		// $scope.uploadImage = function() {
-		// 	// Destination URL
-		// 	var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
+							function success(fileEntry) {
+								var namePath = fileEntry.nativeURL.substr(0, fileEntry.nativeURL.lastIndexOf('/') + 1);
+								// Only copy because of access rights
+								$cordovaFile.copyFile(namePath, fileEntry.name, cordova.file.dataDirectory, newFileName).then(function(success) {
+									$scope.image = newFileName;
+								}, function(error) {
+									$scope.showAlert('Error', error.exception);
+								});
+							};
+						});
+					}
+					else {
+						var namePath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+						// Move the file to permanent storage
+						$cordovaFile.moveFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(function(success) {
+							$scope.image = newFileName;
+						}, function(error) {
+							$scope.showAlert('Error', error.exception);
+						});
+					}
+				},
+				function(err) {
+					// Not always an error, maybe cancel was pressed...
+				})
+		}
+		$scope.pathForImage = function(image) {
+			if (image === null) {
+				return '';
+			}
+			else {
+				return cordova.file.dataDirectory + image;
+			}
+		}
+		$scope.uploadImage = function() {
+			// Destination URL
+			var url = "https://priscila-backendserve-juanmiguelar09.c9users.io/structure/routers/upload.php";
 
-		// 	// File for Upload
-		// 	var targetPath = $scope.pathForImage($scope.image);
+			// File for Upload
+			var targetPath = $scope.pathForImage($scope.image);
 
-		// 	// File name only
-		// 	var filename = $scope.image;
+			// File name only
+			var filename = $scope.image;
 
-		// 	var options = {
-		// 		fileKey: "file",
-		// 		fileName: filename,
-		// 		chunkedMode: false,
-		// 		mimeType: "multipart/form-data",
-		// 		params: {
-		// 			'fileName': filename
-		// 		}
-		// 	};
+			var options = {
+				fileKey: "file",
+				fileName: filename,
+				chunkedMode: false,
+				mimeType: "multipart/form-data",
+				params: {
+					'fileName': filename
+				}
+			};
 
-		// 	$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
+			$cordovaFileTransfer.upload(url, targetPath, options).then(function(result) {
 				
-		// 	});
+			});
 			
-		// 	// Codigo nuevo
+			// Codigo nuevo
 			
-		// 			 //$cordovaFileTransfer.upload(url, targetPath, options)
-		// 		  //    .then(function(result) {
-		// 		  //      // Success!
-		// 		  //      if (result.data!=0) {
+					 //$cordovaFileTransfer.upload(url, targetPath, options)
+				  //    .then(function(result) {
+				  //      // Success!
+				  //      if (result.data!=0) {
 							
-		// 				// 	alert($localStorage.imagen);
-		// 				// }else{
-		// 				// 	$localStorage.imagen = '';
-		// 				// 	$scope.showAlert('Error', 'La imagen no se subió correctamente.');
-		// 				// }
-		// 		  //    }, function(err) {
-		// 		  //      // Error
-		// 		  //      $scope.showAlert('Error', 'La imagen no se subió correctamente.');
-		// 		  //    }, function (progress) {
-		// 		  //      // constant progress updates
-		// 		  //    });
+						// 	alert($localStorage.imagen);
+						// }else{
+						// 	$localStorage.imagen = '';
+						// 	$scope.showAlert('Error', 'La imagen no se subió correctamente.');
+						// }
+				  //    }, function(err) {
+				  //      // Error
+				  //      $scope.showAlert('Error', 'La imagen no se subió correctamente.');
+				  //    }, function (progress) {
+				  //      // constant progress updates
+				  //    });
 			
-		// 	// Codigo nuevo
+			// Codigo nuevo
 			
-		// }
-		// // Camara
+		}
+		// Camara
 		
 		///SCOPES DE CASOS DE MALTRATO
 		$scope.ubicacionMaltrato = function() {
